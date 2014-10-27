@@ -243,10 +243,7 @@ class Launcher(QtGui.QWidget):
         mainWindow.setObjectName(title)
 
 
-        print 1
-
         while self.progress < totalProc:
-            print self.progress
             self.progress = self.progress + 1
 
             message = scanner.messageQueue.get()

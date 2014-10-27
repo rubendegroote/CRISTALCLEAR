@@ -10,6 +10,7 @@ from core.settings import SessionSettings
 from collections import OrderedDict
 from multiprocessing import freeze_support
 import time
+import os
 
 import sys
 import threading
@@ -25,11 +26,27 @@ pg.setConfigOption('background', 'w')
 pg.setConfigOption('foreground', 'k')
 
 if __name__ == "__main__":
+
+
+
     
     # add freeze support
     freeze_support()
 
     app = QtGui.QApplication(sys.argv)
+
+    path = os.getcwd().split('CRISTALCLEAR')[0] + '\\CRISTALCLEAR'
+
+    dirs = [path + '\\Data', path + '\\Logbook']
+
+    print dirs
+    
+    for d in dirs:
+        print d
+        if not os.path.exists(d):
+            print 1
+            os.makedirs(d)
+
 
     settings = SessionSettings()
     
