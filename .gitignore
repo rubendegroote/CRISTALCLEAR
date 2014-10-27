@@ -45,3 +45,6 @@ Temporary Items
 
 # data files
 *.csv
+
+# logbook files
+*.txt
