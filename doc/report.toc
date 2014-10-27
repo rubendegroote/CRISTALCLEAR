@@ -1,0 +1,15 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}CRISTAL structure}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}NI card interfacing}{2}{subsection.1.2}
+\contentsline {section}{\numberline {2}Use}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Running CRISTAL}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Using CRISTAL}{3}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Scanner widget}{3}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Settings widget}{4}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Console widget}{4}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}Logbook widget}{4}{subsubsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.5}Graph widgets}{5}{subsubsection.2.2.5}
+\contentsline {subsubsection}{\numberline {2.2.6}Datastream widget}{5}{subsubsection.2.2.6}
+\contentsline {subsubsection}{\numberline {2.2.7}HELP PANIC BUTTON AAH}{5}{subsubsection.2.2.7}
+\contentsline {section}{\numberline {3}Development}{5}{section.3}
+\contentsline {section}{\numberline {4}Troubleshooting / FAQ}{5}{section.4}

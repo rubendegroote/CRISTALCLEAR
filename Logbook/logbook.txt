@@ -1,0 +1,2292 @@
+*** New Entry ***
+Entry	Entry key: 0
+name:	Capture 406
+tags:	
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:18:11
+*** New Entry ***
+Entry	Entry key: 0
+name:	Capture 406
+tags:	
+people:	Ruben
+comments:	Messing around with the empty logbook.
+#End of comment
+time:	14/09/23 11:18:11
+*** New Entry ***
+Entry	Entry key: 0
+name:	Capture 406
+tags:	Debug
+people:	Ruben
+comments:	Messing around with the empty logbook.
+#End of comment
+time:	14/09/23 11:18:11
+*** New Entry ***
+CaptureLogEntry	Entry key: 1
+name:	Capture 0
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 11:21:30
+*** New Entry ***
+CaptureLogEntry	Entry key: 1
+name:	Capture 0
+tags:	Debug
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 11:21:30
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 1
+name:	Capture 0
+tags:	Debug
+people:	Ruben
+comments:	Seeing if CW scanning still works.
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 11:21:30
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 1
+name:	Capture 0
+tags:	Debug
+people:	Ruben
+comments:	Seeing if CW scanning still works.
+#End of comment
+stopTime:	14/09/23 11:23:12
+isotope:	
+time:	14/09/23 11:21:30
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 2
+name:	Capture 1
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 11:26:11
+*** New Entry ***
+CaptureLogEntry	Entry key: 2
+name:	Capture 1
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 11:26:40
+isotope:	
+time:	14/09/23 11:26:11
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 3
+name:	Capture 2
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 11:26:40
+*** New Entry ***
+CaptureLogEntry	Entry key: 3
+name:	Capture 2
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 11:26:46
+isotope:	
+time:	14/09/23 11:26:40
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 2
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:26:11
+tags:	Debug
+stopTime:	14/09/23 11:26:40
+isotope:	
+name:	Capture 1
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 3
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:26:40
+tags:	Debug
+stopTime:	14/09/23 11:26:46
+isotope:	
+name:	Capture 2
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 4
+name:	Capture 3
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 11:27:41
+*** New Entry ***
+CaptureLogEntry	Entry key: 4
+name:	Capture 3
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 11:29:52
+isotope:	
+time:	14/09/23 11:27:41
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 4
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:27:41
+tags:	Debug
+stopTime:	14/09/23 11:29:52
+isotope:	
+name:	Capture 3
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 5
+name:	Capture 4
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 11:41:38
+*** New Entry ***
+CaptureLogEntry	Entry key: 5
+name:	Capture 4
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 11:43:18
+isotope:	
+time:	14/09/23 11:41:38
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 6
+name:	Capture 5
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 11:44:27
+*** New Entry ***
+CaptureLogEntry	Entry key: 6
+name:	Capture 5
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 11:44:58
+isotope:	
+time:	14/09/23 11:44:27
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 7
+name:	Capture 6
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 11:45:02
+*** New Entry ***
+CaptureLogEntry	Entry key: 7
+name:	Capture 6
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 11:46:03
+isotope:	
+time:	14/09/23 11:45:02
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 8
+name:	Capture 7
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 11:49:28
+*** New Entry ***
+CaptureLogEntry	Entry key: 8
+name:	Capture 7
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 11:49:47
+isotope:	
+time:	14/09/23 11:49:28
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 9
+name:	Capture 8
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:04:57
+*** New Entry ***
+CaptureLogEntry	Entry key: 9
+name:	Capture 8
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:05:16
+isotope:	
+time:	14/09/23 13:04:57
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 9
+people:	
+comments:	
+#End of comment
+time:	14/09/23 13:04:57
+tags:	Debug
+stopTime:	14/09/23 13:05:16
+isotope:	
+name:	Capture 8
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 8
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:49:28
+tags:	Debug
+stopTime:	14/09/23 11:49:47
+isotope:	
+name:	Capture 7
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 8
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:49:28
+tags:	Debug, Isomer hunt
+stopTime:	14/09/23 11:49:47
+isotope:	
+name:	Capture 7
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 8
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:49:28
+tags:	Debug, Left, Isomer hunt
+stopTime:	14/09/23 11:49:47
+isotope:	
+name:	Capture 7
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 8
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:49:28
+tags:	Debug, Left
+stopTime:	14/09/23 11:49:47
+isotope:	
+name:	Capture 7
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 8
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:49:28
+tags:	Debug
+stopTime:	14/09/23 11:49:47
+isotope:	
+name:	Capture 7
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 10
+name:	Capture 9
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:19:01
+*** New Entry ***
+CaptureLogEntry	Entry key: 10
+name:	Capture 9
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:19:12
+isotope:	
+time:	14/09/23 13:19:01
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 11
+name:	Capture 10
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:19:15
+*** New Entry ***
+CaptureLogEntry	Entry key: 11
+name:	Capture 10
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:19:45
+isotope:	
+time:	14/09/23 13:19:15
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 12
+name:	Capture 11
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:40:29
+*** New Entry ***
+CaptureLogEntry	Entry key: 12
+name:	Capture 11
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:41:29
+isotope:	
+time:	14/09/23 13:40:29
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 13
+name:	Capture 12
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:41:29
+*** New Entry ***
+CaptureLogEntry	Entry key: 13
+name:	Capture 12
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:41:36
+isotope:	
+time:	14/09/23 13:41:29
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 14
+name:	Capture 13
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:42:41
+*** New Entry ***
+CaptureLogEntry	Entry key: 14
+name:	Capture 13
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:42:52
+isotope:	
+time:	14/09/23 13:42:41
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 15
+name:	Capture 14
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:42:53
+*** New Entry ***
+CaptureLogEntry	Entry key: 15
+name:	Capture 14
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:43:04
+isotope:	
+time:	14/09/23 13:42:53
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 16
+name:	Capture 15
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:43:05
+*** New Entry ***
+CaptureLogEntry	Entry key: 16
+name:	Capture 15
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:43:10
+isotope:	
+time:	14/09/23 13:43:05
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 17
+name:	Capture 16
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:44:37
+*** New Entry ***
+CaptureLogEntry	Entry key: 17
+name:	Capture 16
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:45:31
+isotope:	
+time:	14/09/23 13:44:37
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 18
+name:	Capture 17
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:45:33
+*** New Entry ***
+CaptureLogEntry	Entry key: 18
+name:	Capture 17
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:45:44
+isotope:	
+time:	14/09/23 13:45:33
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 19
+name:	Capture 18
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:45:46
+*** New Entry ***
+CaptureLogEntry	Entry key: 19
+name:	Capture 18
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:46:20
+isotope:	
+time:	14/09/23 13:45:46
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 20
+name:	Capture 19
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:49:11
+*** New Entry ***
+CaptureLogEntry	Entry key: 20
+name:	Capture 19
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:49:29
+isotope:	
+time:	14/09/23 13:49:11
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 21
+name:	Capture 20
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:50:13
+*** New Entry ***
+CaptureLogEntry	Entry key: 21
+name:	Capture 20
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:50:20
+isotope:	
+time:	14/09/23 13:50:13
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	300
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 22
+name:	Capture 21
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/23 13:50:24
+*** New Entry ***
+CaptureLogEntry	Entry key: 22
+name:	Capture 21
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/23 13:51:02
+isotope:	
+time:	14/09/23 13:50:24
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	300
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 9
+people:	
+comments:	
+#End of comment
+time:	14/09/23 13:04:57
+tags:	Debug, Wouter
+stopTime:	14/09/23 13:05:16
+isotope:	
+name:	Capture 8
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 14
+people:	
+comments:	
+#End of comment
+time:	14/09/23 13:42:41
+tags:	Wouter
+stopTime:	14/09/23 13:42:52
+isotope:	
+name:	Capture 13
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 9
+people:	
+comments:	
+#End of comment
+time:	14/09/23 13:04:57
+tags:	Debug, Wouter, interessant
+stopTime:	14/09/23 13:05:16
+isotope:	
+name:	Capture 8
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 6
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:44:27
+tags:	interessant
+stopTime:	14/09/23 11:44:58
+isotope:	
+name:	Capture 5
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 6
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:44:27
+tags:	
+stopTime:	14/09/23 11:44:58
+isotope:	
+name:	Capture 5
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 9
+people:	
+comments:	
+#End of comment
+time:	14/09/23 13:04:57
+tags:	Debug, Wouter
+stopTime:	14/09/23 13:05:16
+isotope:	
+name:	Capture 8
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	500
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 7
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:45:02
+tags:	Debug
+stopTime:	14/09/23 11:46:03
+isotope:	
+name:	Capture 6
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 7
+people:	
+comments:	
+#End of comment
+time:	14/09/23 11:45:02
+tags:	Debug, Example
+stopTime:	14/09/23 11:46:03
+isotope:	
+name:	Capture 6
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	1000
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 23
+name:	Capture 22
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/30 10:36:20
+*** New Entry ***
+CaptureLogEntry	Entry key: 23
+name:	Capture 22
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/30 10:36:34
+isotope:	
+time:	14/09/30 10:36:20
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	10
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 24
+name:	Capture 23
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/30 10:40:20
+*** New Entry ***
+CaptureLogEntry	Entry key: 24
+name:	Capture 23
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/30 10:40:22
+isotope:	
+time:	14/09/30 10:40:20
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	10
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 25
+name:	Capture 24
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/30 10:40:25
+*** New Entry ***
+CaptureLogEntry	Entry key: 25
+name:	Capture 24
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/30 10:40:47
+isotope:	
+time:	14/09/30 10:40:25
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	10
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 26
+name:	Capture 25
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/30 10:42:56
+*** New Entry ***
+CaptureLogEntry	Entry key: 26
+name:	Capture 25
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/30 10:42:58
+isotope:	
+time:	14/09/30 10:42:56
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	10
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 27
+name:	Capture 26
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/30 10:43:01
+*** New Entry ***
+CaptureLogEntry	Entry key: 27
+name:	Capture 26
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/30 10:43:07
+isotope:	
+time:	14/09/30 10:43:01
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	10
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 28
+name:	Capture 27
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/30 10:43:08
+*** New Entry ***
+CaptureLogEntry	Entry key: 28
+name:	Capture 27
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/30 10:43:33
+isotope:	
+time:	14/09/30 10:43:08
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	10
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 29
+name:	Capture 28
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/09/30 10:47:52
+*** New Entry ***
+CaptureLogEntry	Entry key: 29
+name:	Capture 28
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/09/30 10:47:55
+isotope:	
+time:	14/09/30 10:47:52
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	10
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 30
+name:	Capture 29
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 13:34:45
+*** New Entry ***
+CaptureLogEntry	Entry key: 30
+name:	Capture 29
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 13:34:57
+isotope:	
+time:	14/10/13 13:34:45
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 31
+name:	Capture 30
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 13:39:42
+*** New Entry ***
+CaptureLogEntry	Entry key: 31
+name:	Capture 30
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 13:39:45
+isotope:	
+time:	14/10/13 13:39:42
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	10
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 32
+name:	Capture 31
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 13:39:54
+*** New Entry ***
+CaptureLogEntry	Entry key: 32
+name:	Capture 31
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 13:40:05
+isotope:	
+time:	14/10/13 13:39:54
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 33
+name:	Capture 32
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 13:40:09
+*** New Entry ***
+CaptureLogEntry	Entry key: 34
+name:	Capture 33
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 13:41:06
+*** New Entry ***
+CaptureLogEntry	Entry key: 35
+name:	Capture 34
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 13:43:15
+*** New Entry ***
+CaptureLogEntry	Entry key: 35
+name:	Capture 34
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 13:43:17
+isotope:	
+time:	14/10/13 13:43:15
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	10
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 36
+name:	Capture 35
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 13:43:56
+*** New Entry ***
+CaptureLogEntry	Entry key: 37
+name:	Capture 36
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 13:49:36
+*** New Entry ***
+CaptureLogEntry	Entry key: 37
+name:	Capture 36
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 13:49:37
+isotope:	
+time:	14/10/13 13:49:36
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 38
+name:	Capture 37
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 13:52:47
+*** New Entry ***
+CaptureLogEntry	Entry key: 39
+name:	Capture 38
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 13:53:29
+*** New Entry ***
+CaptureLogEntry	Entry key: 39
+name:	Capture 38
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 13:53:47
+isotope:	
+time:	14/10/13 13:53:29
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 40
+name:	Capture 39
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:01:52
+*** New Entry ***
+CaptureLogEntry	Entry key: 41
+name:	Capture 40
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:04:13
+*** New Entry ***
+CaptureLogEntry	Entry key: 42
+name:	Capture 41
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:05:55
+*** New Entry ***
+CaptureLogEntry	Entry key: 43
+name:	Capture 42
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:06:48
+*** New Entry ***
+CaptureLogEntry	Entry key: 44
+name:	Capture 43
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:07:18
+*** New Entry ***
+CaptureLogEntry	Entry key: 44
+name:	Capture 43
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 14:07:39
+isotope:	
+time:	14/10/13 14:07:18
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 45
+name:	Capture 44
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:07:40
+*** New Entry ***
+CaptureLogEntry	Entry key: 46
+name:	Capture 45
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:14:25
+*** New Entry ***
+CaptureLogEntry	Entry key: 46
+name:	Capture 45
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 14:14:37
+isotope:	
+time:	14/10/13 14:14:25
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 47
+name:	Capture 46
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:19:17
+*** New Entry ***
+CaptureLogEntry	Entry key: 48
+name:	Capture 47
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:36:07
+*** New Entry ***
+CaptureLogEntry	Entry key: 48
+name:	Capture 47
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 14:36:23
+isotope:	
+time:	14/10/13 14:36:07
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 49
+name:	Capture 48
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:37:12
+*** New Entry ***
+CaptureLogEntry	Entry key: 49
+name:	Capture 48
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 14:37:24
+isotope:	
+time:	14/10/13 14:37:12
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 50
+name:	Capture 49
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:38:43
+*** New Entry ***
+CaptureLogEntry	Entry key: 50
+name:	Capture 49
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 14:38:58
+isotope:	
+time:	14/10/13 14:38:43
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 51
+name:	Capture 50
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:40:13
+*** New Entry ***
+CaptureLogEntry	Entry key: 51
+name:	Capture 50
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 14:40:25
+isotope:	
+time:	14/10/13 14:40:13
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 52
+name:	Capture 51
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:41:28
+*** New Entry ***
+CaptureLogEntry	Entry key: 52
+name:	Capture 51
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 14:41:40
+isotope:	
+time:	14/10/13 14:41:28
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 53
+name:	Capture 52
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:41:42
+*** New Entry ***
+CaptureLogEntry	Entry key: 54
+name:	Capture 53
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:42:25
+*** New Entry ***
+CaptureLogEntry	Entry key: 55
+name:	Capture 54
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:42:58
+*** New Entry ***
+CaptureLogEntry	Entry key: 56
+name:	Capture 55
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:44:59
+*** New Entry ***
+CaptureLogEntry	Entry key: 56
+name:	Capture 55
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 14:45:12
+isotope:	
+time:	14/10/13 14:44:59
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 57
+name:	Capture 56
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 14:45:12
+*** New Entry ***
+CaptureLogEntry	Entry key: 57
+name:	Capture 56
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 14:45:35
+isotope:	
+time:	14/10/13 14:45:12
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 58
+name:	Capture 57
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:23:48
+*** New Entry ***
+CaptureLogEntry	Entry key: 58
+name:	Capture 57
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 15:24:11
+isotope:	
+time:	14/10/13 15:23:48
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 59
+name:	Capture 58
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:26:33
+*** New Entry ***
+CaptureLogEntry	Entry key: 59
+name:	Capture 58
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 15:27:22
+isotope:	
+time:	14/10/13 15:26:33
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 60
+name:	Capture 59
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:30:40
+*** New Entry ***
+CaptureLogEntry	Entry key: 60
+name:	Capture 59
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 15:30:42
+isotope:	
+time:	14/10/13 15:30:40
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 61
+name:	Capture 60
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:31:18
+*** New Entry ***
+CaptureLogEntry	Entry key: 61
+name:	Capture 60
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 15:31:41
+isotope:	
+time:	14/10/13 15:31:18
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 62
+name:	Capture 61
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:32:51
+*** New Entry ***
+CaptureLogEntry	Entry key: 62
+name:	Capture 61
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 15:32:58
+isotope:	
+time:	14/10/13 15:32:51
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	50
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 63
+name:	Capture 62
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:33:00
+*** New Entry ***
+CaptureLogEntry	Entry key: 63
+name:	Capture 62
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 15:33:38
+isotope:	
+time:	14/10/13 15:33:00
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	50
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 64
+name:	Capture 63
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:49:53
+*** New Entry ***
+CaptureLogEntry	Entry key: 64
+name:	Capture 63
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 15:50:04
+isotope:	
+time:	14/10/13 15:49:53
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 65
+name:	Capture 64
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:50:07
+*** New Entry ***
+CaptureLogEntry	Entry key: 65
+name:	Capture 64
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 15:50:22
+isotope:	
+time:	14/10/13 15:50:07
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 66
+name:	Capture 65
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:52:47
+*** New Entry ***
+CaptureLogEntry	Entry key: 67
+name:	Capture 66
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:56:55
+*** New Entry ***
+CaptureLogEntry	Entry key: 68
+name:	Capture 67
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:59:17
+*** New Entry ***
+CaptureLogEntry	Entry key: 68
+name:	Capture 67
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 15:59:28
+isotope:	
+time:	14/10/13 15:59:17
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 69
+name:	Capture 68
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 15:59:35
+*** New Entry ***
+CaptureLogEntry	Entry key: 70
+name:	Capture 69
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 16:01:00
+*** New Entry ***
+CaptureLogEntry	Entry key: 70
+name:	Capture 69
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 16:01:12
+isotope:	
+time:	14/10/13 16:01:00
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 71
+name:	Capture 70
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 16:01:14
+*** New Entry ***
+CaptureLogEntry	Entry key: 71
+name:	Capture 70
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 16:02:22
+isotope:	
+time:	14/10/13 16:01:14
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 72
+name:	Capture 71
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 16:02:23
+*** New Entry ***
+CaptureLogEntry	Entry key: 72
+name:	Capture 71
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 16:02:29
+isotope:	
+time:	14/10/13 16:02:23
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 73
+name:	Capture 72
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 16:03:01
+*** New Entry ***
+CaptureLogEntry	Entry key: 74
+name:	Capture 73
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 16:03:17
+*** New Entry ***
+CaptureLogEntry	Entry key: 74
+name:	Capture 73
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 16:03:29
+isotope:	
+time:	14/10/13 16:03:17
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 75
+name:	Capture 74
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 16:03:29
+*** New Entry ***
+CaptureLogEntry	Entry key: 76
+name:	Capture 75
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 16:03:51
+*** New Entry ***
+CaptureLogEntry	Entry key: 76
+name:	Capture 75
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 16:03:55
+isotope:	
+time:	14/10/13 16:03:51
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	20
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 77
+name:	Capture 76
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 16:03:55
+*** New Entry ***
+CaptureLogEntry	Entry key: 78
+name:	Capture 77
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 16:04:16
+*** New Entry ***
+CaptureLogEntry	Entry key: 78
+name:	Capture 77
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 16:04:20
+isotope:	
+time:	14/10/13 16:04:16
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	20
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 79
+name:	Capture 78
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 16:04:20
+*** New Entry ***
+CaptureLogEntry	Entry key: 79
+name:	Capture 78
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 16:04:27
+isotope:	
+time:	14/10/13 16:04:20
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	20
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 80
+name:	Capture 79
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/13 16:04:27
+*** New Entry ***
+CaptureLogEntry	Entry key: 80
+name:	Capture 79
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/13 16:04:31
+isotope:	
+time:	14/10/13 16:04:27
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	20
+laser:	CW
+zigZag:	False
+*** New Entry ***
+CaptureLogEntry	Entry key: 81
+name:	Capture 80
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/15 13:06:00
+*** New Entry ***
+CaptureLogEntry	Entry key: 81
+name:	Capture 80
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/15 13:06:13
+isotope:	
+time:	14/10/15 13:06:00
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	True
+*** New Entry ***
+CaptureLogEntry	Entry key: 82
+name:	Capture 81
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/15 13:06:27
+*** New Entry ***
+CaptureLogEntry	Entry key: 82
+name:	Capture 81
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/15 13:06:35
+isotope:	
+time:	14/10/15 13:06:27
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	True
+*** New Entry ***
+CaptureLogEntry	Entry key: 83
+name:	Capture 82
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/15 13:06:41
+*** New Entry ***
+CaptureLogEntry	Entry key: 83
+name:	Capture 82
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/15 13:08:14
+isotope:	
+time:	14/10/15 13:06:41
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	True
+*** New Entry ***
+CaptureLogEntry	Entry key: 84
+name:	Capture 83
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	Scan not stopped yet
+isotope:	
+time:	14/10/15 13:09:22
+*** New Entry ***
+CaptureLogEntry	Entry key: 84
+name:	Capture 83
+tags:	
+people:	
+comments:	
+#End of comment
+stopTime:	14/10/15 13:10:14
+isotope:	
+time:	14/10/15 13:09:22
+counterChannel:	/Dev1/ctr1
+aoChannel:	/Dev1/ao0
+aiChannel:	/Dev1/ai1,/Dev1/ai2
+clockChannel:	/Dev1/PFI1
+timePerStep:	100
+laser:	CW
+zigZag:	False

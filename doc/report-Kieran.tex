@@ -1,0 +1,192 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+\setlength{\parindent}{0in}
+\begin{document}
+
+\author{Kieran R Campbell\\
+		Cern Summer Student 2013\\
+		\texttt{kieranrcampbell@gmail.com}}
+\date{\today}
+\title{Summer Student Report\\
+		Mallard: DAQ for CRIS}
+\maketitle
+\tableofcontents
+\newpage
+\section{Online Resources}
+	Github Repository: \url{https://github.com/kieranrcampbell/mallard} \\
+
+Documentation: \url{http://kieranrcampbell.github.io/mallard/} \\
+
+Sourceforge page: \url{https://sourceforge.net/projects/mallardforcris/} \\
+
+\section{Introduction}
+\subsection{Etymology}
+Two things frequently occur at CERN: everything is an acronym (CERN, LHC, ATLAS, ALICE, ISOLDE, CRIS, ...)\footnote{There are even super-acronyms such as CHIS - CERN Health Insurance Scheme - a service with which most summer students are all too familiar}, and the DAQ/duck joke is made (a yellow rubber duck sits on the data acquisition desk in the ATLAS control room). The obvious challenge then for any self respecting summer student is to combine both of these, and so came Mallard: Multi Analog LossLess Acquistion of Resonance Data\footnote{Many thanks to various other summer students for help on the acronym}.
+\subsection{Purpose}
+Mallard is designed for efficient data acquisition and experimental control on the CRIS experiment at ISOLDE, CERN. The software interfaces a National Instruments USB-6211 card that connects to the lasers, counters and trigger. The experiment requires the software to scan across a range of voltages set on an analogue output, and at each voltage measure counts from the MCP (Micro-Channel Plate) and an analogue input (relative intensity of the laser). The user selects the voltage range across which to scan, how many volts should be set in a given interval, and how many scans across the full voltage range should be performed. The timing of the voltage change comes from an external trigger that is also connected to the scanning laser. \\
+
+During the data acquisition the software continuously graphs the current count rate and analogue input voltage measured, as well as the average so far in order to provide the user with an idea of whether the measurements are drifting from the expected value. The raw data of counts and analogue input measurements is collected and saved to disk, as well as an integrated file showing the measurements at each voltage averaged over a number of scans.
+
+\section{Installation}
+\subsection{Dependencies}
+Mallard has the following dependencies:
+\begin{itemize}
+\item SciPy \url{http://www.scipy.org/}
+\item PyDAQmx \url{http://pythonhosted.org/PyDAQmx/}
+\item wxPython \url{http://www.wxpython.org/}
+\end{itemize}
+Installing SciPy on Windows can be tedious, so use Anaconda (\url{https://store.continuum.io/}) which comes with it pre-installed. Don't install wxPython using \texttt{easy\_install} or \texttt{pip} as this installs some bizarre empty package. Instead, download the Windows installer directly from their website (see above).
+\subsection{NIDAQmx}
+NIDAQmx (\url{http://www.ni.com/dataacquisition/nidaqmx}) from National Instruments provides the base set of drivers to interface the card. The full set of functionality is only available on Windows. At time of writing the latest version was 9.7 which can be downloaded from \url{http://joule.ni.com/nidu/cds/view/p/id/3811/lang/en}. NIDAQmx installs a header file containing all the C library function definitions. The location of this file must be noted and an installation file in PyDAQmx modified accordingly (see PyDAQmx documentation for details).
+\subsection{Mallard}
+\subsubsection{From source}
+The source code can be downloaded (as zip or tar.gz) from the github repository \url{https://github.com/kieranrcampbell/mallard}. Extract it to a convenient folder then, from the top level \texttt{mallard} directory it can be installed by \texttt{python setup.py install}. Then mallard can be launched in the usual way, or if you prefer to use it within a python script itself it can be called using \texttt{import mallard} etc.
+
+\subsubsection{Windows executable}
+A Windows installer for the python package can be downloaded from the sourceforge page \url{https://sourceforge.net/projects/mallardforcris/} which will install it as a python package.
+
+\subsubsection{System Requirements}
+Due to the availability of \texttt{NI-DAQmx} Mallard only runs on Windows. Despite all data being held in RAM, during system tests it was found that 500 scans with 50 intervals per scan only takes up about 150MB, so this is certainly not a limiting factor.
+
+\section{Use}
+\subsection{Basic Capture}
+To begin Mallard, navigate to the root \texttt{mallard} folder, and start by
+\begin{verbatim}
+python -m mallard.main
+\end{verbatim}
+Due to a multiprocessing bug under python on Windows we can't have the usual \_\_main\_\_.py folder to begin the module as \texttt{python mallard}. \\
+
+Each acquisition session of data corresponding to a particular set of settings is known as a capture. Each capture is represented by a tab in the GUI, and a new capture can be opened by File $\rightarrow$ New Capture. Captures can be saved (see below), but cannot be reloaded into Mallard as there is currently no data analysis functionality. However, the settings for a new capture can be loaded from an old capture by File $\rightarrow$ Load Capture then selecting the capture you wish to open.\\
+
+\begin{figure}[h!]
+
+  \centering
+    \includegraphics[width=1.0\textwidth]{mallard_large_capture}
+      \caption{Screenshot of Mallard capturing data.}
+\end{figure}
+
+The capture begins by pressing `Start Capture', and can be stopped by selecting Capture $\rightarrow$ Kill Capture. The current voltage and MCP count is displayed on the screen, as well as the scan average superimposed on the graph. The graph can be saved at any time using the Matplotlib functionality on screen. \\
+
+The graph style can be changed at any time by going to File $\rightarrow$ Preferences. The graph style can be set separately for the count graph and for the voltage graph. There are three different types:
+\begin{enumerate}
+\item Step (histogram): Essentially bins the data exactly like a histogram
+\item Line: joins consecutive data points using lines
+\item Points: Each data point is represented by a separate point. For the count graph this has error bars, which are given by $\sqrt{N}$ for $N$ counts.
+\end{enumerate}
+
+In these preferences you can also set the style of the `mean'. Selecting `normalised' graphs each count divided by the number of scans, whereas `cumulative' gives the sum of all counts across all scans. \\
+
+Plots can be saved using the controls on the plot itself. To move the plot around, select the `Pan' symbol and drag with the left mouse click. To zoom in and out, both horizontally and vertically, select the `Pan' symbol and drag with the right mouse button.
+
+\subsection{Key Concepts}
+\begin{itemize}
+\item Voltage minimum: The voltage from which the laser starts scanning
+\item Voltage maximum: The voltage to which the laser will scan
+\item Intervals per scan: The number of intervals to scan in the voltage range, defined by $(V_{max} - V_{min})/(N-1)$ for $N$ intervals
+\item Scans: The number of full scans to do (from minimum to maximum across the range)
+\item Clock cycles per interval: The number of onboard clock cycles to wait per scan (known as the 'rate' in NI terminology, 100 is a good number)
+\item Analog input: Analog input channel (default /Dev1/ai2)
+\item Counter input: Input channel for counting events. This is a 'virtual' channel, which requires looking at the NI handbook, but Dev1/ctr1 corresponds to Dev1/PFI1 on the 6211
+\item Analog output: Analog output channel (default /Dev1/ao0)
+\item Clock input: Input channel for the pseudo-trigger clock
+\end{itemize}
+\textbf{Note:} if we scan from $V_{min}$ to $V_{max}$ in $N$ intervals, then the volts per interval is $(V_{max} - V_{min})/(N-1)$, \textbf{not} $(V_{max} - V_{min})/N$, to accommodate the fact that we would like to measure at the voltage endpoints.
+
+\subsection{Data Output}
+When mallard runs it creates two datasets: every count measurement at every interval across every scan, and likewise for the analogue input readings. These are then averaged over the scans to give a third 'integrated' dataset. As such, mallard outputs 3 data files. If the capture name is 'mycapture' then these files are:
+
+\begin{itemize}
+\item mycapture.integrated.csv: contains the integrated (final) dataset across all scans
+\item mycapture.raw.counts.csv: contains the raw count data for all intervals and scans
+\item mycapture.raw.ai.csv: contains the raw analog input information for all intervals and scans
+\end{itemize}
+
+Each of these files is in comma separated value format and contains a header, denoted by '\#' at the beginning of each line, containing the settings listed in key concepts above. As such, any file can be used to recover capture settings for a new capture. The header format comes from numpy's file output functions, as any line starting with '\#' is ignored as a comment, so the data can be read in again by python.\\
+
+Mallard does not yet have any in built analysis, but with the data in this format it should be easy enough. The data can be opened directly in excel, or using numpy in python as follows:
+
+\begin{verbatim}
+import numpy as np
+data = np.loadtxt(`mycapture.integrated.csv', delimiter=`,')
+voltage_intervals = data.T[0] # need to transpose matrix
+counts = data.T[1]
+ai_readings = data.T[2]
+\end{verbatim}
+
+and voltage, counts and  ai\_voltage can be analysed using any of the standard tools in SciPy.
+
+
+\section{Development}
+Mallard is written in python and is under git source control.
+\subsection{Package Layout}
+The mallard package is organised into several sub-packages:
+
+\subsubsection{mallard.core} 
+This provides base functionality for the package including data and file handling. \texttt{\textbf{CaptureSession}} represents an abstract (ie has no attached daq interface or gui), and manages calls for file management and data acquisition. \texttt{\textbf{SessionSettings}} represents the settings for a given capture session, including input, output and counter channels. \texttt{CaptureSession} holds the `master' copy, though since everything in python is a pointer all copies (held by all \texttt{mallard.core} modules). However, after settings are changed some things must be recalculated (such as voltage intervals), so if a module uses \texttt{SessionSettings} it's not okay to assume changes elsewhere will be safely reflected in the current location. \texttt{\textbf{DataManager}} holds runtime data and has the \texttt{queue.get()} method to receive data from the interface. It also calculates the averages across scans, and calls the \texttt{GraphManager} (which provides the interface between \texttt{mallard.core} and the gui package). \texttt\textbf{FileManager} deals with file input and output. It can generate the header from \texttt{SessionSettings} and can read in and parse settings and filenames.
+\subsubsection{mallard.daq} 
+This contains only one module called \texttt{Acquire} that interfaces the USB-6211 card. If the card needs changed in future then only this module needs rewritten. It is the only module in the entire package that is just a function, as spawning processes that are class methods using the \texttt{multiprocessing} module is very difficult (maybe impossible?). All this module needs are the session settings (for channel names and rates) and a \texttt{multiprocessing.Queue} to report the data back to \texttt{DataManager}.
+\subsubsection{mallard.gui} 
+This provides the graphical user interface using wxPython. \textbf{\texttt{MFrame}} is the base \texttt{wx.Frame} used, which owns a \texttt{CaptureNotebook}. This \texttt{CaptureNotebook} holds \texttt{CapturePane}s, each of which corresponds to a \texttt{CaptureSession}. The \texttt{GraphManager} provides a link between the \texttt{DataManager} and the gui, updating the graph on screen with the data coming in. \texttt{SettingsDialog} simply displays a dialog that lets the user change all the different settings.
+
+\subsubsection{mallard.test} 
+Holds all the obsolete and test scripts created along the way, in case they come in handy at a later point. May be changed to `old' in future. 
+
+\begin{figure}[h!]
+
+  \centering
+    \includegraphics[width=0.8\textwidth]{package_diagram}
+      \caption{Diagram of data passing between modules.}
+\end{figure}
+
+\subsection{Triggering}
+In order to change the analogue input and count particles in each voltage interval, mallard uses a special type of triggering called \textit{re-triggering}. However, virtually no cards (including the NI-6211) support re-triggering. To get round this we simply use an external clock as a sort of pseudo-trigger, whereby each measurement is performed on the clock cycle. In practice there seems to be absolutely no difference between a trigger and an external clock. 
+
+\begin{figure}[h!]
+
+  \centering
+    \includegraphics[width=0.8\textwidth]{trigger_diagram}
+      \caption{Trigger timing.}
+\end{figure}
+
+On the 6211 certain operations we need can't use an external clock, such as externally timed analogue output. To get round this we slot the analogue output voltage update just after the digital count read (which \textit{can} be externally timed), and in doing so we create virtually externally timed analogue output. Note that the time this software loop takes to update forms the minimum trigger rate, which is found to be around 40ms. If the CPU is particularly loaded (or a different machine is used) then this may increase.
+
+\subsection{Data Handling}
+
+\section{Troubleshooting / FAQ}
+\subsection{Mallard}
+\begin{description}
+  \item[ImportError: Matplotlib backend\_wx and backend\_wxagg require wxversion, which was not found.] \hfill \\
+  Sometimes the wxversion module is missing. Download it from \url{http://svn.wxwidgets.org/viewvc/wx/wxPython/trunk/wxversion/wxversion.py?view=co} and install in your \texttt{site-packages} directory (for Anaconda this is usually \texttt{C:/Anaconda/lib/site-packages}).
+  \item[The stdout error window disappears before I've read what it says] \hfill \\
+  In \texttt{main.py} change the line that reads \texttt{ app = wx.App() } to read \texttt{ app = wx.App(redirect=False) } and open using the command line (cygwin).
+   \item[How do I set the default settings?] \hfill \\
+	Just edit \texttt{GlobalSettings} and \texttt{SessionSettings} in \texttt{settings.py}. They were set to the values most convenient for debugging and development.
+	\item[How do I create the Windows installer of the package?] \hfill \\
+Navigate to the root mallard directory and run
+\begin{verbatim}
+python setup.py bdist_wininst
+\end{verbatim}
+and an executable installer will be created in the \texttt{dist/} directory.
+\end{description}
+\subsection{NIDAQmx Errors}
+\begin{description}
+\item[The specified resource is reserved. The operation could not be completed as specified.] \hfill \\
+This means a task is still running on the device. To end the task and recover, open the NIDAQmx utility from Start $\rightarrow$ National Instruments $\rightarrow$ NiMAX. Select Devices and Interfaces $\rightarrow$ NI USB 6211 then select `Reset Device', and await confirmation.
+\end{description}
+
+
+\end{document}
