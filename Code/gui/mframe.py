@@ -271,10 +271,9 @@ class MainWindow(QtGui.QMainWindow):
 
             try:
                 self.globalSession.currentCapture.saveSession()
-
+                self.statusTimer.stop()
             except AttributeError:
                 pass # Gets thrown if no captures have been started when closing the program
-            self.statusTimer.stop()
 
             event.accept()
         else:

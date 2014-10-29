@@ -39,12 +39,8 @@ if __name__ == "__main__":
 
     dirs = [path + '\\Data', path + '\\Logbook']
 
-    print dirs
-    
     for d in dirs:
-        print d
         if not os.path.exists(d):
-            print 1
             os.makedirs(d)
 
 

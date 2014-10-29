@@ -367,7 +367,10 @@ class ModelWidget(QtGui.QWidget):
 
     def setParameters(self,names,values):
         for name,value in zip(names,values):
-            self.parBoxes[name].setCurrentValue(float(value))
+            try:
+                self.parBoxes[name].setCurrentValue(float(value))
+            except KeyError:
+                pass
 
 class ResultWidget(QtGui.QWidget):
     def __init__(self,metaCapture):

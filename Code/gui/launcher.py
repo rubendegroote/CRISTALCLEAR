@@ -126,8 +126,6 @@ class Launcher(QtGui.QWidget):
         self.launchButton.clicked.connect(self.launch)
         settingsLayout.addWidget(self.launchButton,9,1)
 
-        self.setWindowFlags(self.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
-
 
     def selectDevice(self):
 
