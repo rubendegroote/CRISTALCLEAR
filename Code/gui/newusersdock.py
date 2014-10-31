@@ -1,6 +1,6 @@
 import pyqtgraph as pg
 from PyQt4 import QtCore,QtGui
-from pyqtgraph.dockarea import Dock
+from dock import Dock
 
 
 class NewUsersDock(Dock):

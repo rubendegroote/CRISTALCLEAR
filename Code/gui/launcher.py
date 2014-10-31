@@ -35,7 +35,10 @@ class Launcher(QtGui.QWidget):
         self.layout.setAlignment(QtCore.Qt.AlignTop)
 
         picLabel = QtGui.QLabel()
-        pixmap = QtGui.QPixmap(os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Code\\gui\\resources\\splash_loading')
+        imagePath = os.getcwd().split('CRISTALCLEAR')[0] \
+                + 'CRISTALCLEAR\\Code\\gui\\resources\\splash_loading'
+
+        pixmap = QtGui.QPixmap(imagePath)
         picLabel.setPixmap(pixmap)
 
         self.layout.addWidget(picLabel)
@@ -219,7 +222,7 @@ class Launcher(QtGui.QWidget):
                 width: 20px;
                 }
                 """)
-        self.progressBar.setRange(0,totalProc+1)
+        self.progressBar.setRange(0,totalProc)
 
         self.layout.addWidget(self.progressBar,20,0,1,2)
 

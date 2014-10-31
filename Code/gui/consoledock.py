@@ -1,12 +1,11 @@
 import pyqtgraph as pg
 import numpy as np
-from pyqtgraph.dockarea import Dock
+from dock import Dock
 import pyqtgraph.console
 
 class ConsoleDock(Dock):
     def __init__(self,name,size):
         Dock.__init__(self,name,size)
-
 
 
         self.orientation = 'horizontal'

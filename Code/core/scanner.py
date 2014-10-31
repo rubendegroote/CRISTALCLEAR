@@ -99,6 +99,7 @@ class Scanner(QtCore.QObject):
             targetF = acquireDummy
         else:
             targetF = acquire
+    
 
         self.daqProcess = Process(target=targetF,
                               args=(self.settings,self.dataQueue,self.controlEvent,

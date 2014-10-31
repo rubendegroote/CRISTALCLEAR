@@ -50,7 +50,7 @@ def laserDummy(settings, freqQueue,controlEvent,captureRunningEvent,recordingEve
     settings.sanitise() # don't want things to go wrong here
 
     # begin RILIS communications loop
-    messageQueue.put((True, "RILIS Communications established"))
+    messageQueue.put((True, "Laser Communications established"))
     controlEvent.set()
     
     while True:

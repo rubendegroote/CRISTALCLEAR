@@ -25,7 +25,7 @@ from splitter import MySplitter
 from dragdrop import *
 from picbutton import PicButton
 from graphsettings import GraphSettingsWidget
-from pyqtgraph.dockarea import Dock
+from dock import Dock
 import pyqtgraph.exporters as exporter
 
 class DataStreamsDock(Dock):

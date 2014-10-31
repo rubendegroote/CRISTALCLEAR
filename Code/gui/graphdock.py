@@ -22,7 +22,7 @@ from splitter import MySplitter
 from dragdrop import *
 from picbutton import PicButton
 from graphsettings import GraphSettingsWidget
-from pyqtgraph.dockarea import Dock
+from dock import Dock
 import pyqtgraph.exporters as exporter
 from core.metacapture import MetaCapture
 
@@ -42,7 +42,7 @@ units = {'ion': 'Hz',
 class GraphDock(Dock):
 
     def __init__(self,title,size,globalSession):
-        Dock.__init__(self,title,size, autoOrientation=False,closable = True)
+        Dock.__init__(self,title,size, autoOrientation=False, closable = True)
 
         self.globalSession = globalSession
 
@@ -56,7 +56,7 @@ class GraphDock(Dock):
             self.graph.timer.stop()
         except:
             pass
-        super(da.Dock,self).close()
+        super(Dock,self).close()
 
     def updateToCurrentCapture(self):
         cap = self.globalSession.getCurrentCapture()
