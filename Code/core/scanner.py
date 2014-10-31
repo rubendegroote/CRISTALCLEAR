@@ -1,4 +1,4 @@
-# from daq.acquire import acquire, fastAcquire, clearcard, acquireRILIS, acquireCW
+from daq.acquire import acquire, fastAcquire, clearcard, acquireRILIS, acquireCW
 from daq.acquireDummy import acquireDummy, laserDummy
 from multiprocessing import Process, Queue, Event, Value
 import numpy as np
