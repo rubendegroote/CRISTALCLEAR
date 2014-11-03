@@ -42,9 +42,10 @@ class MetaCapture():
 
             return True
 
-    def setXY(self,xkey,ykey,freqMode,mode,scansIncluded,histMode,binsize):
+    def setXY(self,xkey,ykey,y2key, freqMode,mode,scansIncluded,histMode,binsize):
         self.xkey = xkey
         self.ykey = ykey
+        self.y2key = y2key
         self.freqMode = freqMode
         self.scansIncluded = scansIncluded
         if not mode == self.mode:
@@ -55,22 +56,22 @@ class MetaCapture():
 
 
     def getData(self):
-        if self.xkey == '' or self.ykey == '':
+        if self.xkey == '' or self.ykey == '' or self.y2key == '':
             return
 
         if self.mode ==  'Combined':
             self.x = self.getDataCombined(self.xkey)
-            self.y = self.getDataCombined(self.ykey)
+            self.y = self.getDataCombined(self.ykey,self.y2key)
             self.errors = np.sqrt(self.y)
 
         elif self.mode ==  'Per Capture':
             self.x = self.getDataPerCapture(self.xkey)
-            self.y = self.getDataPerCapture(self.ykey)
+            self.y = self.getDataPerCapture(self.ykey,self.y2key)
             self.errors = np.array([np.sqrt(suby) for suby in self.y])
 
         else:
             self.x = self.getDataPerScan(self.xkey)
-            self.y = self.getDataPerScan(self.ykey)
+            self.y = self.getDataPerScan(self.ykey,self.y2key)
             self.errors = np.array([np.sqrt(suby) for suby in self.y])
 
         if self.xkey == 'freq' and self.freqMode:
@@ -119,31 +120,52 @@ class MetaCapture():
 
         return self.spectra
 
-    def getDataPerScan(self,key):
+    def getDataPerScan(self,key,key2=None):
         # returns a list with all the scans of all the captures, so:
         # [[data cap 1 scan 1], [data cap 2 scan 2], ..., [data cap n scan k]]
-        return np.array([data[key] \
+        if key2 == None:
+            return np.array([data[key] \
+                for cap in self.captures \
+                for scan,data in enumerate(cap.dataManager.allData) \
+                if self.scansIncluded[cap.name][1][scan]])
+        else:
+            return np.array([data[key]/data[key2] \
                 for cap in self.captures \
                 for scan,data in enumerate(cap.dataManager.allData) \
                 if self.scansIncluded[cap.name][1][scan]])
 
-    def getDataPerCapture(self,key):
+    def getDataPerCapture(self,key,key2=None):
         # returns the data per capture: list of lists, every sublist is 1D and contains all
         # the info of one capture
-        ret = []
-        for cap in self.captures:
-            capData = []
-            for scan,data in enumerate(cap.dataManager.allData):
-                if self.scansIncluded[cap.name][1][scan]:
-                    capData.append(data[key])
-            ret.append(np.array([d for cd in capData for d in cd]))
-        return np.array(ret)
+        if key2 == None:
+            ret = []
+            for cap in self.captures:
+                capData = []
+                for scan,data in enumerate(cap.dataManager.allData):
+                    if self.scansIncluded[cap.name][1][scan]:
+                        capData.append(data[key])
+                ret.append(np.array([d for cd in capData for d in cd]))
+            return np.array(ret)
+        else:
+            ret = []
+            for cap in self.captures:
+                capData = []
+                for scan,data in enumerate(cap.dataManager.allData):
+                    if self.scansIncluded[cap.name][1][scan]:
+                        capData.append(data[key]/data[key2])
+                ret.append(np.array([d for cd in capData for d in cd]))
+            return np.array(ret)
 
-    def getDataCombined(self,key):
+    def getDataCombined(self,key,key2=None):
         # returna all the data in one big array
         # [d1, d2, ... d3]
-        return np.array([[d for cap in self.captures \
+        if key2 == None:
+            return np.array([[d for cap in self.captures \
                 for scan,data in enumerate(cap.dataManager.allData) for d in data[key] \
+                if self.scansIncluded[cap.name][1][scan]]])
+        else:
+            return np.array([[d1/d2 for cap in self.captures \
+                for scan,data in enumerate(cap.dataManager.allData) for d1,d2 in zip(data[key],data[key2]) \
                 if self.scansIncluded[cap.name][1][scan]]])
 
     def getHeaderInfo(self):

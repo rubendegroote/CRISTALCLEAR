@@ -27,8 +27,6 @@ pg.setConfigOption('foreground', 'k')
 
 if __name__ == "__main__":
 
-
-
     
     # add freeze support
     freeze_support()

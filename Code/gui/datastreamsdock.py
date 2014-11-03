@@ -78,8 +78,8 @@ class DataStreamGraph(QtGui.QWidget):
                           'freq': 'Wavemeter frequency (GHz)',
                           'volt': 'Scanning voltage (V)',
                           'rate': 'Rate averaged over 10 samples (Hz)',
-                          'RILIS Power': 'Laser Power',
-                          'RILIS Linewidth': 'Laser Linewidth (GHz)',
+                          'Power': 'Laser Power',
+                          'Linewidth': 'Laser Linewidth (GHz)',
                           'thick': 'Thick etalon setpoint',
                           'thin': 'Thin etalon setpoint'}
 

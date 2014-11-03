@@ -110,6 +110,7 @@ class GlobalSession:
 
 
     def createDataStream(self):
+        
         self.dataStreams = dict()
         self.dataStreams['time'] = StreamedData('time',10000,self)
         

@@ -137,18 +137,27 @@ class MyGraph(QtGui.QWidget):
         self.comboY.currentIndexChanged.connect(self.updatePlot)
         self.sublayout.addWidget(self.comboY,0,1)
 
+        self.comboY2 = QtGui.QComboBox(parent = None)
+        self.comboY2.setVisible(False)
+        self.comboY2.currentIndexChanged.connect(self.updatePlot)
+        self.sublayout.addWidget(self.comboY2,0,2)
+
         label = QtGui.QLabel('vs')
         label.setStyleSheet("border: 0px;");
-        self.sublayout.addWidget(label,0,2)
+        self.sublayout.addWidget(label,0,3)
 
         self.comboX = QtGui.QComboBox(parent = None)
         self.comboX.currentIndexChanged.connect(self.updatePlot)
-        self.sublayout.addWidget(self.comboX,0,3)
+        self.sublayout.addWidget(self.comboX,0,4)
+
+        self.mathCheckBox = QtGui.QCheckBox('Mathy math math')
+        self.mathCheckBox.stateChanged.connect(self.enableMathPanel)
+        self.sublayout.addWidget(self.mathCheckBox,1,0)
 
         self.freqUnitSelector = QtGui.QComboBox(parent = None)
         self.freqUnitSelector.addItems(['Frequency','Wavelength'])
         self.freqUnitSelector.currentIndexChanged.connect(self.updatePlot)
-        self.sublayout.addWidget(self.freqUnitSelector,0,4)
+        self.sublayout.addWidget(self.freqUnitSelector,0,5)
 
         self.meanStyles = ['Combined','Per Capture', 'Seperate']
         self.meanBox = QtGui.QComboBox(self)
@@ -156,7 +165,7 @@ class MyGraph(QtGui.QWidget):
         self.meanBox.setCurrentIndex(1)
         self.meanBox.setMaximumWidth(110)
         self.meanBox.currentIndexChanged.connect(self.updatePlot)
-        self.sublayout.addWidget(self.meanBox,1,1)
+        self.sublayout.addWidget(self.meanBox,2,1)
 
         self.graphStyles = ['Step (histogram)', 'Line']#, 'Point']
 
@@ -165,7 +174,7 @@ class MyGraph(QtGui.QWidget):
         self.graphBox.setCurrentIndex(0)
         self.graphBox.setMaximumWidth(110)
         self.graphBox.currentIndexChanged.connect(self.updatePlot)
-        self.sublayout.addWidget(self.graphBox,1,2)
+        self.sublayout.addWidget(self.graphBox,2,2)
 
         self.binLabel = QtGui.QLabel(self, text="Bin size: ")
         self.binSpinBox = pg.SpinBox(value = 0.03,
@@ -173,8 +182,8 @@ class MyGraph(QtGui.QWidget):
         self.binSpinBox.setMaximumWidth(110)
         self.binSpinBox.sigValueChanged.connect(self.updatePlot)
         
-        self.sublayout.addWidget(self.binLabel,1,3)
-        self.sublayout.addWidget(self.binSpinBox,1,4)      
+        self.sublayout.addWidget(self.binLabel,2,3)
+        self.sublayout.addWidget(self.binSpinBox,2,4)      
         
 
         self.saveButton = PicButton('save',checkable = False,size = 25)
@@ -282,14 +291,18 @@ class MyGraph(QtGui.QWidget):
             t = self.metaCap.dataTypes
             curX = str(self.comboX.currentText())
             curY = str(self.comboY.currentText())
+            curY2 = str(self.comboY.currentText())
             self.comboX.clear()
             self.comboX.addItems(t)
             self.comboY.clear()
             self.comboY.addItems(t)
+            self.comboY2.clear()
+            self.comboY2.addItems(t)
 
             try:
                 self.comboX.setCurrentIndex(t.index(curX))
                 self.comboY.setCurrentIndex(t.index(curY))
+                self.comboY2.setCurrentIndex(t.index(curY2))
             except:
                 pass
 
@@ -298,9 +311,23 @@ class MyGraph(QtGui.QWidget):
         self.setXY()
         self.plot()
 
+    def enableMathPanel(self):
+        if self.mathCheckBox.checkState() == 2:
+           self.comboY2.setVisible(True)
+        else:
+           self.comboY2.setVisible(False)
+
+        self.updatePlot()
+
     def setXY(self):
+
         self.x = str(self.comboX.currentText())
         self.y = str(self.comboY.currentText())
+        if self.mathCheckBox.checkState() == 2:
+            self.y2 = str(self.comboY2.currentText())
+        else:
+            self.y2 = None
+
         freqMode = str(self.freqUnitSelector.currentText()) == 'Frequency'
         mode = str(self.meanBox.currentText())
         scansIncluded = self.settingsWidget.getCheckStates()
@@ -326,7 +353,7 @@ class MyGraph(QtGui.QWidget):
         self.setLabels()
 
         if not self.metaCap == None and not self.x == '' and not self.y == '':
-            self.metaCap.setXY(xkey=self.x,ykey=self.y,
+            self.metaCap.setXY(xkey=self.x,ykey=self.y, y2key=self.y2,
                 freqMode = freqMode,
                 mode = mode,
                 scansIncluded = scansIncluded,
@@ -353,7 +380,7 @@ class MyGraph(QtGui.QWidget):
             curve.setBrush(self.fills[i])
         
     def setLabels(self):
-        if not self.x == '' and not self.y == '':
+        if not self.x == '' and not self.y == '' and not self.y2 == '':
             if self.x == 'freq':
                 if str(self.freqUnitSelector.currentText()) == 'Wavelength':
                     xunit = 'm'
@@ -362,16 +389,21 @@ class MyGraph(QtGui.QWidget):
             else:
                 xunit = units[self.x]
 
-            if self.y == 'freq':
-                if str(self.freqUnitSelector.currentText()) == 'Wavelength':
-                    yunit = 'm'
-                else:
-                    yunit = 'Hz'
+            if self.mathCheckBox.checkState() == 2:
+                yunit = ''
+                self.graph.setLabel('left', text = 'ratio', units = yunit)
             else:
-                yunit = units[self.y]
+                if self.y == 'freq':
+                    if str(self.freqUnitSelector.currentText()) == 'Wavelength':
+                        yunit = 'm'
+                    else:
+                        yunit = 'Hz'
+                else:
+                    yunit = units[self.y]
+
+                self.graph.setLabel('left', text = self.y, units = yunit)
 
             self.graph.setLabel('bottom', text = self.x, units = xunit)
-            self.graph.setLabel('left', text = self.y, units = yunit)
 
     def emitLogSignal(self,volt):
         if not str(self.comboX.currentText()) =='' \
