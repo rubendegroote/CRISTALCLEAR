@@ -21,6 +21,8 @@ from core.session import GlobalSession
 from statusindicator import StatusIndicator
 from scannerwidget import ScannerWidget
 from picbutton import PicButton
+from gui.launcher import Launcher
+from core.settings import SessionSettings
 
 
 
@@ -35,26 +37,39 @@ class MainWindow(QtGui.QMainWindow):
 
     """
 
-    def __init__(self, parent, globalSession):
-        super(MainWindow, self).__init__(parent)
+    def __init__(self):
+        super(MainWindow, self).__init__()
+
+        settings = SessionSettings()
+    
+        self.launcher = Launcher(settings)
+        self.launcher.show()
+
+        self.launcher.launched.connect(self.startFromLauncher)
+
+
+    def startFromLauncher(self,globalSession):
+
 
         self.globalSession = globalSession
+        self.settings = self.globalSession.settings
         self.scanner = self.globalSession.scanner
 
         self.InitUI()
 
-        if self.globalSession.settings.cristalMode:
+        if self.settings.cristalMode:
             self.statusTimer = QtCore.QTimer()
             self.statusTimer.timeout.connect(self.statusIndicator.updateStatus)
             self.statusTimer.start(100)
 
-            self.scanner.startProcesses()
+        self.showMaximized()
+        self.launcher.close()
 
     def InitUI(self):
         """
         UI initialisation
         """
-        if self.globalSession.settings.cristalMode:
+        if self.settings.cristalMode:
 
             self.freqToolBar = QtGui.QToolBar('CRISTALFREQ')
             self.freqToolBar.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
@@ -63,7 +78,7 @@ class MainWindow(QtGui.QMainWindow):
         self.createDockArea()
 
 
-        if self.globalSession.settings.cristalMode:
+        if self.settings.cristalMode:
             self.scannerWidget = ScannerWidget(self.globalSession)
             self.scanner.captureDone.connect(self.onStopCapture)
             self.freqToolBar.addWidget(self.scannerWidget)
@@ -74,7 +89,7 @@ class MainWindow(QtGui.QMainWindow):
         self.helpButton = PicButton('help',size = 70)
         self.helpButton.clicked.connect(self.onDocumentation)
 
-        if self.globalSession.settings.cristalMode:
+        if self.settings.cristalMode:
             self.graphButton = PicButton('graph', checkable = True,size = 70)
             self.graphButton.clicked.connect(self.showDataStream)
             
@@ -89,7 +104,7 @@ class MainWindow(QtGui.QMainWindow):
         self.consoleButton = PicButton('console.png',checkable = True,size = 70)
         self.consoleButton.clicked.connect(self.showConsole)
 
-        if self.globalSession.settings.clearMode:
+        if self.settings.clearMode:
             self.analyseButton = PicButton('analyse.png',checkable = True,size = 70)
             self.analyseButton.clicked.connect(self.showAnalysis)
 
@@ -99,22 +114,22 @@ class MainWindow(QtGui.QMainWindow):
         self.toolbar = QtGui.QToolBar('CRISTAL')
         self.toolbar.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
 
-        if self.globalSession.settings.cristalMode:
+        if self.settings.cristalMode:
             self.toolbar.addWidget(self.settingsButton)
 
         self.toolbar.addWidget(self.consoleButton)
         self.toolbar.addWidget(self.logBookButton)
 
-        if self.globalSession.settings.clearMode:
+        if self.settings.clearMode:
             self.toolbar.addWidget(self.analyseButton)
 
-        if self.globalSession.settings.cristalMode:
+        if self.settings.cristalMode:
             self.toolbar.addWidget(self.plotButton)
             self.toolbar.addWidget(self.graphButton)
         
         self.toolbar.addWidget(self.helpButton)
         
-        if self.globalSession.settings.cristalMode:
+        if self.settings.cristalMode:
             self.toolbar.addSeparator()
             self.toolbar.addWidget(self.statusIndicator)
 

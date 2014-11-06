@@ -1,9 +1,10 @@
 import pyqtgraph as pg
 from PyQt4 import QtCore,QtGui
-from dock import Dock
+import threading
 
 from splitter import MySplitter
 from filterwidget import FilterWidget
+from dock import Dock
 from dragdrop import *
 from FrameLayout import FrameLayout
 from picbutton import PicButton
@@ -18,8 +19,6 @@ class LogViewDock(Dock):
     """
     Shows the logbook
     """
-
-    plotLoad = QtCore.Signal(object) #passes the signal from the EntryWidgets along
 
     analyseThis = QtCore.Signal(object)
 
@@ -237,6 +236,8 @@ class LogViewer(QtGui.QWidget):
                         lambda: self.filterWidget.updateToCurrentLog(self.logBook))
 
                     self.entryContainers[-1].addWidget(self.logEntryWigets[key],key,0)
+
+                    QtGui.QApplication.processEvents()
 
                     if self.entryContainers[-1].count() > 100:
                         self.newEntryContainer()

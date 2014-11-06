@@ -106,7 +106,7 @@ class GlobalSession:
         self.createDataStream()
         self.dataStreamThread = threading.Timer(0, self.dataStream).start()
 
-        self.loadLogBook()
+        self.logLoadThread = threading.Timer(0, self.loadLogBook).start()
 
 
     def createDataStream(self):
@@ -241,10 +241,16 @@ class GlobalSession:
         lines = f.readlines()
         i=1 # won't start at i=0, we can ignore the first line of the log (it says '*** New Entry ***')
         if len(lines) < 1:
+            self.scanner.messageQueue.put((True,'Logbook loaded.'))
             return
             
         while i<len(lines):
             line = lines[i]
+            if i%100 == 0:
+                self.scanner.messageQueue.put(\
+                    (False,'Loading Logbook line {0} of {1}...'.format(str(i),
+                                                                       str(len(lines)))))
+
             if line == '*** New Entry ***\n':
 
                 if newEntry.__class__.__name__ == 'CaptureLogEntry':
@@ -315,4 +321,4 @@ class GlobalSession:
         # Add session to logbook
         self.logBook.addEntry(entry = newEntry, key = logKey)
 
-
+        self.scanner.messageQueue.put((True,'Logbook loaded.'))

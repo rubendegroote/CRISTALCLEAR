@@ -5,7 +5,6 @@ import numpy as np
 import os
 import time
 
-from gui.mframe import MainWindow
 from core.session import GlobalSession
 from core.scanner import Scanner
 from centraldockarea import CentralDockArea
@@ -26,8 +25,11 @@ class Launcher(QtGui.QWidget):
     ruben.degroote@cern.ch
 
     """
-    def __init__(self,settings):
+    launched = QtCore.Signal(object)
+    def __init__(self, settings):
         super(Launcher, self).__init__()
+
+        self.setWindowFlags(self.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
 
         self.settings = settings
 
@@ -130,6 +132,8 @@ class Launcher(QtGui.QWidget):
         settingsLayout.addWidget(self.launchButton,9,1)
 
 
+        self.progText = ''
+
     def selectDevice(self):
 
         if self.cristalCheck.checkState() == 0:
@@ -194,22 +198,42 @@ class Launcher(QtGui.QWidget):
 
         self.settings.sanitise()
 
+    def disableAll(self):
+        self.cristalCheck.setDisabled(True)
+        self.clearCheck.setDisabled(True)
+        self.deviceCombo.setDisabled(True)
+        self.laserCombo.setDisabled(True)
+        self.label6.setDisabled(True)
+        self.ctrEdit.setDisabled(True)
+        self.label8.setDisabled(True)
+        self.AOEdit.setDisabled(True)
+        self.label9.setDisabled(True)
+        self.AIEdit.setDisabled(True)
+        self.label10.setDisabled(True)
+        self.clockEdit.setDisabled(True)
+        self.laserCombo.setDisabled(True)
+        self.launchButton.setDisabled(True)
+        self.logButton.setDisabled(True)   
+
     def launch(self):
 
         self.setSettings()
+
+        self.disableAll()
         
         if self.settings.laser == 'CW without wavemeter':
-            totalProc = 2
-        else:
             totalProc = 3
+        else:
+            totalProc = 4
         
         if not self.settings.cristalMode:
-            totalProc = 0
+            totalProc = 1
             
         # application variables
         title = "cristal - Data Acquisition for CRIS"
         self.progress = 0
-        self.progressBar = QtGui.QProgressBar()
+        self.progressBar = QtGui.QProgressBar(\
+            format = 'Work package %v out of %m complete')
         self.progressBar.setStyleSheet(""" 
                 QProgressBar {
                 border: 2px solid grey;
@@ -227,6 +251,7 @@ class Launcher(QtGui.QWidget):
         self.layout.addWidget(self.progressBar,20,0,1,2)
 
         self.progressLabel = QtGui.QLabel()
+        self.progressLabel.setMinimumHeight(60)
         self.layout.addWidget(self.progressLabel,21,0,1,2)
 
         QtGui.QApplication.processEvents()
@@ -235,30 +260,35 @@ class Launcher(QtGui.QWidget):
 
         scanner = Scanner(self.settings)
         globalSession = GlobalSession(captures,scanner,self.settings)
+        scanner.startProcesses()
 
         QtGui.QApplication.processEvents()
 
-        mainWindow = MainWindow(parent = self,\
-            globalSession = globalSession)
-        mainWindow.setWindowTitle('CRISTAL')
-        mainWindow.setObjectName(title)
-
-
         while self.progress < totalProc:
-            self.progress = self.progress + 1
 
-            message = scanner.messageQueue.get()
-            if message[0]:
-                self.updateProgressBar(message[1])
+            try:
+                message = scanner.messageQueue.get_nowait()
+                if message[0]:
+                    self.progress = self.progress + 1
+                    self.updateProgressBar(message[1])
+                else:
+                    self.updateProgressBar(message[1])
+            except:
+                time.sleep(0.005)
 
             QtGui.QApplication.processEvents()
 
+        self.progressLabel.setText('Launching CRISTAL...')
 
-        self.setHidden(True)
-        mainWindow.showMaximized()
-
+        self.launched.emit(globalSession)
 
     def updateProgressBar(self,text):
-        self.progressLabel.setText(text)
+        if not 'Logbook' in text:
+            self.progText += text + '\n'
+            self.progressLabel.setText(self.progText)
+        else:
+            self.progressLabel.setText(text + '\n' + self.progText)
+            
+
         self.progressBar.setValue(self.progress)
 

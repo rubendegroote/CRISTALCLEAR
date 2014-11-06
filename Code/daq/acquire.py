@@ -140,7 +140,7 @@ def acquireCW(settings, freqQueue,controlEvent,captureRunningEvent,recordingEven
     tags = [path+tag for tag in tags]
     opc.read(tags, group = 'CW Variables')
 
-    messageQueue.put((True, "CW Communications established"))
+    messageQueue.put((True, "CW Communications established..."))
 
     controlEvent.set()
 

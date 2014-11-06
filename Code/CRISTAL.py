@@ -6,7 +6,6 @@ ruben.degroote@cern.ch
 
 """
 from gui.launcher import Launcher
-from core.settings import SessionSettings
 from collections import OrderedDict
 from multiprocessing import freeze_support
 import time
@@ -16,6 +15,8 @@ import sys
 import threading
 
 from PyQt4 import QtCore,QtGui
+
+from gui.mframe import MainWindow
 
 import pyqtgraph as pg
 from pyqtgraph import setConfigOption
@@ -41,10 +42,7 @@ if __name__ == "__main__":
         if not os.path.exists(d):
             os.makedirs(d)
 
+    m = MainWindow()
 
-    settings = SessionSettings()
-    
-    launcher = Launcher(settings)
-    launcher.show()
 
     sys.exit(app.exec_())
