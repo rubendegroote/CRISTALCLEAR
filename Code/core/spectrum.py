@@ -278,7 +278,7 @@ Defaulting to Gaussian lineshape."""
         self.results = lm.minimize(Model, self.par)
         self.results = lm.minimize(Model, self.par)
 
-        # self.plotFit(x,y,yerr)
+        self.plotFit(x,y,yerr)
 
         self.unscaleParameters()
 
@@ -293,7 +293,11 @@ Defaulting to Gaussian lineshape."""
         pl.errorbar(x-mean,y,yerr = yerr, \
             fmt='bo', markeredgecolor='b' ,markerfacecolor='white',\
             label = 'exp')
-        x2 = np.linspace(min(x),max(x),5000)
+        x2 = np.linspace(min(x),max(x)+1000,5000)
+        pl.plot(x2-mean,self(x2),'g')
+        self.par['FWHMG'].value = 1500
+        for prof in self.parts:
+                prof.fwhm = [self.par['FWHMG'].value, self.par['FWHML'].value]
         pl.plot(x2-mean,self(x2),'r')
 
         pl.show()

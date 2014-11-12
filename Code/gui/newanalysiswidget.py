@@ -294,8 +294,6 @@ class ModelWidget(QtGui.QWidget):
                     zip(self.metaCap.x,self.metaCap.y,self.metaCap.errors),
                     self.spectra):
 
-
-
             spect.FitToBinnedData(data[0],data[1],data[2])
 
         self.newPlotRequested.emit()

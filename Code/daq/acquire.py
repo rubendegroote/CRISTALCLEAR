@@ -33,7 +33,7 @@ def acquire(settings,dataQueue,controlEvent,captureRunningEvent,recordingEvent,e
     settings.sanitise() # don't want things to go wrong here
 
     # constants
-    timeout = 1000.0 # arbitrary - change in future
+    timeout = 10.0 # arbitrary - change in future
     maxRate = 10000.0
 
     # create task handles
