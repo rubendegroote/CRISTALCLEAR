@@ -279,17 +279,38 @@ class Launcher(QtGui.QWidget):
 
             QtGui.QApplication.processEvents()
 
-        self.progressEdit.setText('Launching CRISTAL...')
+        self.progressEdit.setHtml('Launching CRISTAL...')
 
         self.launched.emit(globalSession)
 
     def updateProgressBar(self,text):
+        text = self.formatProgressText(text, error = 'fail' in text)
         if not 'Logbook' in text:
-            self.progText += text + '\n========================== \n\n'
-            self.progressEdit.setText(self.progText)
+            self.progText += text + "<br />"
+            self.progressEdit.setHtml(self.progText)
         else:
-            self.progressEdit.setText(text + '\n' + self.progText)
+            self.progressEdit.setHtml(text + '<br />' + self.progText)
             
 
         self.progressBar.setValue(self.progress)
+
+
+    def formatProgressText(self,text,error = False):
+
+        if error:
+            color = 'red'
+        else:
+            color = 'green'
+
+        text = text.replace('\n', '\n\t')
+        first, newline, rest = text.partition('\n')
+        text = "<font color=\"{0}\">".format(color) + first.split('\n')[0] + newline + \
+               "<font color=\"black\">" + rest
+
+
+        text = text.replace('\t', "&nbsp;&nbsp;&nbsp;&nbsp;")
+        text = text.replace("\n", "<br />") + "<br />"
+
+        return text
+        
 

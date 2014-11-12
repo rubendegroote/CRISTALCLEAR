@@ -20,7 +20,7 @@ from PyDAQmx.DAQmxFunctions import *
 from multiprocessing import Queue
 
 import numpy as np
-import OpenOPC
+from OpenOPC import * 
 import time
 import ctypes
 
@@ -68,7 +68,7 @@ def acquire(settings,dataQueue,controlEvent,captureRunningEvent,recordingEvent,e
                                  DAQmx_Val_RSE, -10.0, 10.0,
                                  DAQmx_Val_Volts, None)
     except DAQError as err:
-        messageQueue.put((False, "NI Communication failed \n" + str(err)))
+        messageQueue.put((False, "NI Communication failed: \n" + str(err)))
 
         return
 
@@ -139,8 +139,12 @@ def acquireCW(settings, freqQueue,controlEvent,captureRunningEvent,recordingEven
 
     path = 'CRIS local SVs for Python'
 
-    opc = OpenOPC.client()
-    opc.connect('National Instruments.Variable Engine.1')
+    opc = client()
+    try:
+        opc.connect('National Instruments.Variable Engine.1')
+    except OPCError as err:
+        messageQueue.put((False, "CW Communications failed: \n" + str(err)))
+        return
 
     tags = ['.Wavenumber Channel 1',
             '.Power Channel 1',
@@ -182,7 +186,6 @@ def acquireCW(settings, freqQueue,controlEvent,captureRunningEvent,recordingEven
 
                 time.sleep(0.003)
 
-
         # except:
         #     errorQueue.put(True)
         #     time.sleep(0.01)
@@ -197,8 +200,12 @@ def acquireRILIS(settings, freqQueue,controlEvent,captureRunningEvent,recordingE
 
     path = 'CRIS local SVs for Python'
 
-    opc = OpenOPC.client()
-    opc.connect('National Instruments.Variable Engine.1')
+    opc = client()
+    try:
+        opc.connect('National Instruments.Variable Engine.1')
+    except OPCError as err:
+        messageQueue.put((False, "RILIS Communications failed: \n" + str(err)))
+        return
 
     tags = ['.PythonWaveReadback',
             '.PythonThickReadback',

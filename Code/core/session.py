@@ -248,7 +248,7 @@ class GlobalSession:
             line = lines[i]
             if i%100 == 0:
                 self.scanner.messageQueue.put(\
-                    (False,'Loading Logbook line {0} of {1}...'.format(str(i),
+                    (False,'Loading Logbook \n Line {0} of {1}...'.format(str(i),
                                                                        str(len(lines)))))
 
             if line == '*** New Entry ***\n':
