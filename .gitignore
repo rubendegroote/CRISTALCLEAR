@@ -48,3 +48,6 @@ Temporary Items
 
 # logbook files
 *.txt
+
+# compiled python Files
+*.pyc
