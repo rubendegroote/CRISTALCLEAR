@@ -37,7 +37,7 @@ class Launcher(QtGui.QWidget):
         self.layout.setAlignment(QtCore.Qt.AlignTop)
 
         picLabel = QtGui.QLabel()
-        imagePath = os.getcwd().split('CRISTALCLEAR')[0] \
+        imagePath = os.getcwd().split('CRISTALCLEAR')[0]\
                 + 'CRISTALCLEAR\\Code\\gui\\resources\\splash_loading'
 
         pixmap = QtGui.QPixmap(imagePath)
@@ -54,7 +54,9 @@ class Launcher(QtGui.QWidget):
         settingsLayout.addWidget(QtGui.QLabel('Device:'), 0,0)
 
         self.deviceCombo = QtGui.QComboBox()
-        self.deviceCombo.addItems(['None', 'NI 6221'])
+        self.deviceCombo.setToolTip('Choose the type of device you are using.\
+ <b>None</b> generates random number data.')
+        self.deviceCombo.addItems(['None', 'NI 6211'])
         self.deviceCombo.currentIndexChanged.connect(self.selectDevice)
         settingsLayout.addWidget(self.deviceCombo, 0,1)
 
@@ -65,6 +67,8 @@ class Launcher(QtGui.QWidget):
         settingsLayout.addWidget(self.label6, 1,0)
 
         self.ctrEdit = QtGui.QLineEdit(self)
+        self.ctrEdit.setToolTip('Here you want to write the counter channel\
+ of the NI Card. ctr1 corresponds to the physical channel <b>PFI3</b>.')
         self.ctrEdit.setDisabled(True)
         settingsLayout.addWidget(self.ctrEdit, 1,1)
         
@@ -75,6 +79,8 @@ class Launcher(QtGui.QWidget):
         settingsLayout.addWidget(self.label8, 2,0)
         
         self.AOEdit = QtGui.QLineEdit(self)
+        self.AOEdit.setToolTip('Here you want to write the analog output channel\
+ of the NI Card you intend to use for laser control.')
         self.AOEdit.setDisabled(True)
         settingsLayout.addWidget(self.AOEdit, 2,1)
        
@@ -85,6 +91,8 @@ class Launcher(QtGui.QWidget):
         settingsLayout.addWidget(self.label9, 4,0)
         
         self.AIEdit = QtGui.QLineEdit(self)
+        self.AIEdit.setToolTip('Here you want to write the analog input channels\
+ of the NI Card <b> separated by a comma </b>.')
         self.AIEdit.setDisabled(True)
         settingsLayout.addWidget(self.AIEdit, 4,1)
 
@@ -96,6 +104,9 @@ class Launcher(QtGui.QWidget):
         settingsLayout.addWidget(self.label10, 5,0)
 
         self.clockEdit = QtGui.QLineEdit(self)
+        self.clockEdit.setToolTip('Here you want to write the clock channel\
+ of the NI Card you intend to use. This clock will be the synchronization point\
+ for all the DAQ. <b> The maximal period the program can cope with is 3ms! <\b>')
         self.clockEdit.setDisabled(True)
         settingsLayout.addWidget(self.clockEdit, 5,1)
 
@@ -105,6 +116,9 @@ class Launcher(QtGui.QWidget):
         settingsLayout.addWidget(self.label11, 6,0)
 
         self.laserCombo = QtGui.QComboBox(self)
+        self.laserCombo.setToolTip('Use this to select the laser system ypu want to\
+ control. The option without wavemeter does not require a working labview\
+ installation, the others do.')
         self.laserCombo.addItems(['CW', 'RILIS', 'CW without wavemeter'])
         self.laserCombo.setCurrentIndex(2)
         settingsLayout.addWidget(self.laserCombo, 6,1)        
@@ -112,21 +126,29 @@ class Launcher(QtGui.QWidget):
         self.setTextFields()
 
         self.logButton = QtGui.QPushButton(self,text = 'Choose logbook file')
+        self.logButton.setToolTip('Click this to browse for a lobook file.\
+ If this is your first time, and empty .txt file will do.')
         self.logButton.clicked.connect(self.chooseLogBook)
         settingsLayout.addWidget(self.logButton,7,1)
 
         self.cristalCheck = QtGui.QCheckBox('CRISTAL')
+        self.cristalCheck.setToolTip('Check this box if ypu want to use CRISTAL\
+ to acquire new data.')
         self.cristalCheck.setChecked(True)
         self.cristalCheck.stateChanged.connect(self.selectDevice)
         settingsLayout.addWidget(self.cristalCheck,8,0)
 
         self.clearCheck = QtGui.QCheckBox('CLEAR')
+        self.clearCheck.setToolTip('Check this box if ypu want to use CLEAR\
+ to analyse the acquried data.')
         self.clearCheck.setChecked(True)
         self.clearCheck.stateChanged.connect(self.selectDevice)
         settingsLayout.addWidget(self.clearCheck,8,1)
 
 
         self.launchButton = QtGui.QPushButton(self,text = 'Ok')
+        self.launchButton.setToolTip('Clicking this button will launch the application\
+ <b> once you have chosen an logbook file!<\b>')        
         self.launchButton.setDisabled(True)
         self.launchButton.clicked.connect(self.launch)
         settingsLayout.addWidget(self.launchButton,9,1)
@@ -304,7 +326,7 @@ class Launcher(QtGui.QWidget):
 
         text = text.replace('\n', '\n\t')
         first, newline, rest = text.partition('\n')
-        text = "<font color=\"{0}\">".format(color) + first.split('\n')[0] + newline + \
+        text = "<font color=\"{0}\">".format(color) + first.split('\n')[0] + newline +\
                "<font color=\"black\">" + rest
 
 

@@ -15,6 +15,7 @@ from PyQt4 import QtCore,QtGui
 import pyqtgraph.dockarea as da
 import numpy as np
 import os
+import threading
 
 from centraldockarea import CentralDockArea
 from core.session import GlobalSession
@@ -36,6 +37,7 @@ class MainWindow(QtGui.QMainWindow):
     ruben.degroote@cern.ch
 
     """
+    errorFound = QtCore.Signal(object)
 
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -50,7 +52,6 @@ class MainWindow(QtGui.QMainWindow):
 
     def startFromLauncher(self,globalSession):
 
-
         self.globalSession = globalSession
         self.settings = self.globalSession.settings
         self.scanner = self.globalSession.scanner
@@ -62,8 +63,33 @@ class MainWindow(QtGui.QMainWindow):
             self.statusTimer.timeout.connect(self.statusIndicator.updateStatus)
             self.statusTimer.start(100)
 
+        self.errorFound.connect(self.showError)
+        self.errorsThread = threading.Timer(0, self.lookForErrors).start()
+
         self.showMaximized()
         self.launcher.close()
+
+    def lookForErrors(self):
+
+        if not self.scanner.errorQueue.empty():
+            error = self.scanner.errorQueue.get()
+            self.errorFound.emit(error)
+
+        else:
+            pass
+
+        if not self.globalSession.stopProgram:
+            self.errorsThread = threading.Timer(0.1, self.lookForErrors).start()    
+
+    def showError(self,error):
+
+        text = 'An error occured on one of the DAQ process loops. \
+You can find the error message below. It would be \
+best to close and restart CRISTAL, since the fautly\
+process terminated non-gracefully. \n\n Error message: \n' + error
+
+        reply = QtGui.QMessageBox.question(self, 'DAQ Error',text)
+
 
     def InitUI(self):
         """
@@ -77,7 +103,6 @@ class MainWindow(QtGui.QMainWindow):
 
         self.createDockArea()
 
-
         if self.settings.cristalMode:
             self.scannerWidget = ScannerWidget(self.globalSession)
             self.scanner.captureDone.connect(self.onStopCapture)
@@ -87,35 +112,48 @@ class MainWindow(QtGui.QMainWindow):
             self.controlButton.clicked.connect(self.onNew)
 
         self.helpButton = PicButton('help',size = 70)
+        self.helpButton.setToolTip('Launch a pdf document with more\
+ information on the CRISTAL software.')
         self.helpButton.clicked.connect(self.onDocumentation)
 
         if self.settings.cristalMode:
             self.graphButton = PicButton('graph', checkable = True,size = 70)
+            self.graphButton.setToolTip('Show the stream of raw data\
+ collected by the NI data card.')
             self.graphButton.clicked.connect(self.showDataStream)
             
             self.plotButton = PicButton('plot.png',size = 70)
+            self.plotButton.setToolTip('Create a new graphing canvas to show the \
+ data is it is collected.')
             self.plotButton.clicked.connect(self.centralDock.newGraph)
 
-            self.settingsButton = PicButton('Settings.png',checkable = True,size = 70)
-            self.settingsButton.clicked.connect(self.showSettings)
+ #            self.settingsButton = PicButton('Settings.png',checkable = True,size = 70)
+ #            self.settingsButton.setToolTip('Show a window to change the settings \
+ # of the data acquisition.')
+ #            self.settingsButton.clicked.connect(self.showSettings)
 
             self.statusIndicator = StatusIndicator(self.globalSession)
 
         self.consoleButton = PicButton('console.png',checkable = True,size = 70)
+        self.consoleButton.setToolTip('Show an embedded python console that has \
+ access to all of the data in the program.')
         self.consoleButton.clicked.connect(self.showConsole)
+
+        self.logBookButton = PicButton('logbook.png',checkable = True,size = 70)
+        self.logBookButton.setToolTip('Display the logbook.')
+        self.logBookButton.clicked.connect(self.showLogbook)
 
         if self.settings.clearMode:
             self.analyseButton = PicButton('analyse.png',checkable = True,size = 70)
+            self.analyseButton.setToolTip('Show an analysis that can be used \
+ to analyse all of the data linked to the current logbook.')
             self.analyseButton.clicked.connect(self.showAnalysis)
-
-        self.logBookButton = PicButton('logbook.png',checkable = True,size = 70)
-        self.logBookButton.clicked.connect(self.showLogbook)
 
         self.toolbar = QtGui.QToolBar('CRISTAL')
         self.toolbar.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
 
-        if self.settings.cristalMode:
-            self.toolbar.addWidget(self.settingsButton)
+        # if self.settings.cristalMode:
+        #     self.toolbar.addWidget(self.settingsButton)
 
         self.toolbar.addWidget(self.consoleButton)
         self.toolbar.addWidget(self.logBookButton)
@@ -223,11 +261,11 @@ class MainWindow(QtGui.QMainWindow):
         else:
             self.centralDock.toDoDock.setVisible(False)
 
-    def showSettings(self):
-        if not self.centralDock.settingsDock.isVisible():
-            self.centralDock.settingsDock.setVisible(True)
-        else:
-            self.centralDock.settingsDock.setVisible(False)
+    # def showSettings(self):
+    #     if not self.centralDock.settingsDock.isVisible():
+    #         self.centralDock.settingsDock.setVisible(True)
+    #     else:
+    #         self.centralDock.settingsDock.setVisible(False)
 
     def showDataStream(self):
         if not self.centralDock.dataStreamsDock.isVisible():

@@ -19,6 +19,7 @@ import ConfigParser
 import time
 import datetime
 import os
+from PyQt4 import QtCore,QtGui
 
 import numpy as np
 
@@ -183,6 +184,7 @@ class GlobalSession:
 
         if not self.stopProgram:
             self.dataStreamThread = threading.Timer(0.03, self.dataStream).start()
+
 
     def getSBMessage(self):
         try:

@@ -23,6 +23,7 @@ import numpy as np
 from OpenOPC import * 
 import time
 import ctypes
+import sys
 
 
 
@@ -99,7 +100,7 @@ def acquire(settings,dataQueue,controlEvent,captureRunningEvent,recordingEvent,e
 
     # begin acquisition loop
     while True:
-        # try:
+        try:
             DAQmxWriteAnalogScalarF64(aoTaskHandle, 
                                       True, timeout,
                                       currentVolt.value, None)
@@ -126,9 +127,11 @@ def acquire(settings,dataQueue,controlEvent,captureRunningEvent,recordingEvent,e
             dataStreamQueue.put((counts, aiData,currentVolt.value,currentFreq.value, timestamp,
                     currentThick.value,currentThin.value,currentPower.value,currentLW.value))
 
-        # except:
-        #     errorQueue.put(True)
-        #     time.sleep(0.01)
+        except Exception as err:
+            errorQueue.put(str(err))
+            break
+
+
 
 def acquireCW(settings, freqQueue,controlEvent,captureRunningEvent,recordingEvent,
     newFreqEvent,errorQueue,messageQueue,currentVolt,
@@ -161,7 +164,7 @@ def acquireCW(settings, freqQueue,controlEvent,captureRunningEvent,recordingEven
     controlEvent.set()
 
     while True:
-        # try:
+        try:
             if newFreqEvent.is_set():
                 newFreqEvent.clear()
                 scanVariables = freqQueue.get()
@@ -186,9 +189,9 @@ def acquireCW(settings, freqQueue,controlEvent,captureRunningEvent,recordingEven
 
                 time.sleep(0.003)
 
-        # except:
-        #     errorQueue.put(True)
-        #     time.sleep(0.01)
+        except Exception as err:
+            errorQueue.put(str(err))
+            break
 
 
 def acquireRILIS(settings, freqQueue,controlEvent,captureRunningEvent,recordingEvent,
@@ -228,7 +231,7 @@ def acquireRILIS(settings, freqQueue,controlEvent,captureRunningEvent,recordingE
     opc.write((path + '.PythonIsOK',False))
 
     while True:
-        # try:
+        try:
             if newFreqEvent.is_set():
                 newFreqEvent.clear()
                 scanVariables = freqQueue.get()
@@ -274,10 +277,11 @@ def acquireRILIS(settings, freqQueue,controlEvent,captureRunningEvent,recordingE
 
                 time.sleep(0.001)
 
+        except Exception as err:
+            errorQueue.put(str(err))
+            break
 
-        # except:
-        #     errorQueue.put(True)
-        #     time.sleep(0.01)
+
 
 
 def clearcard(handles):

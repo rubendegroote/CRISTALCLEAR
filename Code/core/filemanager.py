@@ -80,13 +80,8 @@ class FileManager():
         path = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Data\\'
         f = file(path + name + ".data.csv", 'a')
 
-        try:
-            np.savetxt(f, data, delimiter=";",
-                       header = h)
-        except:
-            print 'failed'
-            pass
-
+        np.savetxt(f, data, delimiter=";",
+                   header = h)
 
         f.close()
 

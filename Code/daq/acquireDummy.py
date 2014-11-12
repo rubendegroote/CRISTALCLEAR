@@ -1,5 +1,6 @@
 from multiprocessing import Queue
 import time as time
+import sys
 
 import pyqtgraph as pg
 
@@ -37,9 +38,9 @@ def acquireDummy(settings,dataQueue,controlEvent,captureRunningEvent,recordingEv
             dataStreamQueue.put((counts, ais,currentVolt.value,currentFreq.value, timestamp,
                     currentThick.value,currentThin.value,currentPower.value,currentLW.value))
 
-        except:
-            errorQueue.put(True)
-            time.sleep(0.01)
+        except Exception as err:
+            errorQueue.put(str(err))
+            break
 
 
 def laserDummy(settings, freqQueue,controlEvent,captureRunningEvent,recordingEvent,
@@ -70,7 +71,9 @@ def laserDummy(settings, freqQueue,controlEvent,captureRunningEvent,recordingEve
             else:
                 time.sleep(0.001)
 
-        except:
-            errorQueue.put(True)
-            time.sleep(0.01)
+                time.sleep(10)
+        
+        except Exception as err:
+            errorQueue.put(str(err))
+            break
 
