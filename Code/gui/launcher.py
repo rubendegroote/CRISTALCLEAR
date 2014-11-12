@@ -285,7 +285,7 @@ class Launcher(QtGui.QWidget):
 
     def updateProgressBar(self,text):
         text = self.formatProgressText(text, error = 'fail' in text)
-        if not 'Logbook' in text:
+        if not 'logbook' in text:
             self.progText += text + "<br />"
             self.progressEdit.setHtml(self.progText)
         else:

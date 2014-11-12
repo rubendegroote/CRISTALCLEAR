@@ -136,7 +136,7 @@ class Scanner(QtCore.QObject):
             relayPath = os.getcwd().split('CRISTALCLEAR')[0] + '\\CRISTALCLEAR\\Code\\builds\\CRISValueRelay\\CRISValueRelay4\\CrisValueRelay'
 
             self.relayProcess = subprocess.Popen(relayPath)
-            self.messageQueue.put((True,'Starting Relay VI'))
+            self.messageQueue.put((True,'Relay VI started.'))
             
 
     def stopProcesses(self):

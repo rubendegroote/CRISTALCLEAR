@@ -95,7 +95,7 @@ def acquire(settings,dataQueue,controlEvent,captureRunningEvent,recordingEvent,e
         return
     
 
-    messageQueue.put((True, "NI Communication established..."))
+    messageQueue.put((True, "NI Communication established."))
 
     # begin acquisition loop
     while True:
@@ -156,7 +156,7 @@ def acquireCW(settings, freqQueue,controlEvent,captureRunningEvent,recordingEven
     tags = [path+tag for tag in tags]
     opc.read(tags, group = 'CW Variables')
 
-    messageQueue.put((True, "CW Communications established..."))
+    messageQueue.put((True, "CW Communications established."))
 
     controlEvent.set()
 
@@ -363,7 +363,7 @@ def fastAcquire(settings,dataQueue,controlEvent,errorQueue,
     aiData = np.zeros((settings.aiChannel.count(',')+1,),dtype=np.float64) 
     aiArrays = np.zeros((settings.aiChannel.count(',')+1,nos))
 
-    messageQueue.put((True, "NI Communication established..."))
+    messageQueue.put((True, "NI Communication established."))
 
     # begin acquisition loop
     while True:
