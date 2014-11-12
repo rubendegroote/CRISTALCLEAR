@@ -47,25 +47,30 @@ def acquire(settings,dataQueue,controlEvent,captureRunningEvent,recordingEvent,e
     DAQmxCreateTask("", byref(aiTaskHandle))
 
     # configure channels
-    DAQmxCreateCICountEdgesChan(countTaskHandle, 
-                                settings.counterChannel, "",
-                                DAQmx_Val_Falling, 0, DAQmx_Val_CountUp)
+    try:
+        DAQmxCreateCICountEdgesChan(countTaskHandle, 
+                                    settings.counterChannel, "",
+                                    DAQmx_Val_Falling, 0, DAQmx_Val_CountUp)
+    
+        DAQmxCfgSampClkTiming(countTaskHandle, 
+                              settings.clockChannel,
+                              maxRate, DAQmx_Val_Falling, 
+                              DAQmx_Val_ContSamps, 1)
+    
+        DAQmxCreateAOVoltageChan(aoTaskHandle, 
+                                 settings.aoChannel,
+                                 "", -10,
+                                 10,
+                                 DAQmx_Val_Volts, None)
+    
+        DAQmxCreateAIVoltageChan(aiTaskHandle,
+                                 settings.aiChannel, "",
+                                 DAQmx_Val_RSE, -10.0, 10.0,
+                                 DAQmx_Val_Volts, None)
+    except DAQError as err:
+        messageQueue.put((False, "NI Communication failed \n" + str(err)))
 
-    DAQmxCfgSampClkTiming(countTaskHandle, 
-                          settings.clockChannel,
-                          maxRate, DAQmx_Val_Falling, 
-                          DAQmx_Val_ContSamps, 1)
-
-    DAQmxCreateAOVoltageChan(aoTaskHandle, 
-                             settings.aoChannel,
-                             "", -10,
-                             10,
-                             DAQmx_Val_Volts, None)
-
-    DAQmxCreateAIVoltageChan(aiTaskHandle,
-                             settings.aiChannel, "",
-                             DAQmx_Val_RSE, -10.0, 10.0,
-                             DAQmx_Val_Volts, None)
+        return
 
     # start tasks
     DAQmxStartTask(countTaskHandle)
@@ -80,11 +85,18 @@ def acquire(settings,dataQueue,controlEvent,captureRunningEvent,recordingEvent,e
 
     # need to perform a count here that we then throw away
     # otherwise get mysterious low first count
-    DAQmxReadCounterScalarU32(countTaskHandle,
-                              timeout,
-                              byref(countData), None)
+    try:
+        DAQmxReadCounterScalarU32(countTaskHandle,
+                                  timeout,
+                                  byref(countData), None)
+    except DAQError as err:
+        messageQueue.put((False, "NI Communication failed: \n" + str(err)))
+
+        return
     
+
     messageQueue.put((True, "NI Communication established..."))
+
     # begin acquisition loop
     while True:
         # try:

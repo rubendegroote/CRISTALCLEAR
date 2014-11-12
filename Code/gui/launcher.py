@@ -250,9 +250,10 @@ class Launcher(QtGui.QWidget):
 
         self.layout.addWidget(self.progressBar,20,0,1,2)
 
-        self.progressLabel = QtGui.QLabel()
-        self.progressLabel.setMinimumHeight(60)
-        self.layout.addWidget(self.progressLabel,21,0,1,2)
+        self.progressEdit = QtGui.QTextEdit()
+        self.progressEdit.setReadOnly(True)
+        self.progressEdit.setMinimumHeight(60)
+        self.layout.addWidget(self.progressEdit,21,0,1,2)
 
         QtGui.QApplication.processEvents()
             
@@ -278,16 +279,16 @@ class Launcher(QtGui.QWidget):
 
             QtGui.QApplication.processEvents()
 
-        self.progressLabel.setText('Launching CRISTAL...')
+        self.progressEdit.setText('Launching CRISTAL...')
 
         self.launched.emit(globalSession)
 
     def updateProgressBar(self,text):
         if not 'Logbook' in text:
-            self.progText += text + '\n'
-            self.progressLabel.setText(self.progText)
+            self.progText += text + '\n========================== \n\n'
+            self.progressEdit.setText(self.progText)
         else:
-            self.progressLabel.setText(text + '\n' + self.progText)
+            self.progressEdit.setText(text + '\n' + self.progText)
             
 
         self.progressBar.setValue(self.progress)
