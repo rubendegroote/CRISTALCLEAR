@@ -3,7 +3,7 @@ from PyQt4 import QtGui, QtCore
 from dragdrop import *
 
 class CollapsibleArrow(QtGui.QPushButton):
-    def __init__(self, parent = None):
+    def __init__(self, parent = None,path = None):
         QtGui.QPushButton.__init__(self, parent = parent)
         
         self.isCollapsed = False
@@ -18,7 +18,7 @@ class CollapsibleArrow(QtGui.QPushButton):
         padding: 0px, 0px, 0px, 0px;}\
         QFrame:hover {background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #44a, stop: 1 #66c);\
         }")
-        imagePath = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Code\\gui\\resources\\'
+        imagePath = path + 'Code\\gui\\resources\\'
         self.arrowNameTrue = imagePath + 'minimizeBlue.png'
         self.arrowNameFalse = imagePath + 'maximizeBlue.png'
         
@@ -73,15 +73,16 @@ class TitleLabel(QtGui.QLabel):
         
 
 class TitleFrame(QtGui.QFrame):
-    def __init__(self, parent = None, text = ''):
+    def __init__(self, parent = None, text = '',path = None):
         QtGui.QFrame.__init__(self, parent = parent)
         
         self.titleLabel = None
         self.arrow = None
+        self.path = path
         self.initTitleFrame(text)
         
     def initArrow(self):
-        self.arrow = CollapsibleArrow(self)
+        self.arrow = CollapsibleArrow(self,self.path)
         
     def initTitleLabel(self,text):
         if 'Capture' in text:
@@ -117,10 +118,11 @@ class TitleFrame(QtGui.QFrame):
         
         
 class FrameLayout(QtGui.QFrame):
-    def __init__(self, parent = None, text = None):
+    def __init__(self, parent = None, text = None, path=None):
         QtGui.QFrame.__init__(self, parent = parent)
         
         self.text = text
+        self.path = path
         self.isCollapsed = False
         self.mainLayout = None
         self.titleFrame = None
@@ -144,7 +146,7 @@ class FrameLayout(QtGui.QFrame):
         self.setLayout(self.mainLayout)
         
     def initTitleFrame(self):
-        self.titleFrame = TitleFrame(text=self.text)
+        self.titleFrame = TitleFrame(text=self.text,path=self.path)
         self.mainLayout.addWidget(self.titleFrame)
         
     def initContentFrame(self):

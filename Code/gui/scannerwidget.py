@@ -15,6 +15,7 @@ class ScannerWidget(QtGui.QWidget):
         super(QtGui.QWidget,self).__init__()
 
         self.globalSession = globalSession
+        self.settings = self.globalSession.settings
         self.scanner = self.globalSession.scanner
         self.scanner.emitScanProgress.connect(self.updateUI)
 
@@ -28,7 +29,8 @@ class ScannerWidget(QtGui.QWidget):
 
         self.layout.addWidget(tabWidget, 0,0,1,1)
 
-        self.controlButton = PicButton('new', checkable = False,size = 100)
+        self.controlButton = PicButton('new', checkable = False,size = 100,
+                                    path = self.globalSession.settings.path)
         self.layout.addWidget(self.controlButton,0,2,1,1)
 
         sublayout = QtGui.QVBoxLayout()
@@ -40,7 +42,8 @@ class ScannerWidget(QtGui.QWidget):
         self.modeCombo.setMaximumWidth(120)
         sublayout.addWidget(self.modeCombo)
 
-        self.timeEdit = PicSpinBox(value = 10,step = 1, integer=True, icon = 'time')
+        self.timeEdit = PicSpinBox(value = 10,step = 1, integer=True, 
+                    icon = 'time', path = self.settings.path)
         self.timeEdit.sigValueChanging.connect(self.changeMode)
         self.timeEdit.setMaximumWidth(120)
         sublayout.addWidget(self.timeEdit)
@@ -77,17 +80,20 @@ class ScannerWidget(QtGui.QWidget):
         self.intermediatePointsLayout.addWidget(self.points[-1],0,200)
 
         self.steps = []
-        self.steps.append(PicSpinBox(icon = 'step.png',step = 1, integer=True))
+        self.steps.append(PicSpinBox(icon = 'step.png',step = 1, 
+            integer=True, path = self.settings.path))
         self.steps[-1].sigValueChanging.connect(self.makeFreqArray)
         self.intermediatePointsLayout.addWidget(self.steps[0],0,1)
         self.steps[0].setAlignment(QtCore.Qt.AlignCenter)
         self.steps[0].setValue(100)
 
-        self.rampButton = PicButton('zig', checkable = False,size = 40)
+        self.rampButton = PicButton('zig', checkable = False,size = 40,
+                                    path = self.globalSession.settings.path)
         layout.addWidget(self.rampButton,0,0,1,1)
         self.rampButton.clicked.connect(self.toggleZigZag)
 
-        self.loopButton = PicButton('loop', checkable = True,size = 40)
+        self.loopButton = PicButton('loop', checkable = True,size = 40,
+                                    path = self.globalSession.settings.path)
         layout.addWidget(self.loopButton,0,1,1,1)
         self.loopButton.clicked.connect(self.toggleLoop)
 
@@ -191,14 +197,16 @@ class ScannerWidget(QtGui.QWidget):
             if freq < point.value():
                 return
 
-        newPoint = PicSpinBox(icon = 'marker',value = freq, step = 0.001)
+        newPoint = PicSpinBox(icon = 'marker',value = freq, 
+            step = 0.001, path = self.settings.path)
         self.points.insert(-1,newPoint)
         self.points[-2].setMaximumWidth(150)
         self.points[-2].sigValueChanging.connect(self.updateMarkerPos)
         self.points[-2].sigValueChanging.connect(self.makeFreqArray)
         self.intermediatePointsLayout.addWidget(self.points[-2],0,2*len(self.points[1:-1]))
 
-        newStep = PicSpinBox(icon = 'step',step = 1, integer=True)
+        newStep = PicSpinBox(icon = 'step',step = 1, 
+            integer=True, path = self.settings.path)
         self.steps.append(newStep)
         self.steps[-1].sigValueChanging.connect(self.makeFreqArray)
         self.steps[-1].setAlignment(QtCore.Qt.AlignCenter)
@@ -448,11 +456,11 @@ class FreeScanWidget(QtGui.QWidget):
 
 class PicSpinBox(pg.SpinBox):
 
-    def __init__(self, icon, step=0.01,value=0, integer = False, parent=None):
+    def __init__(self, icon, step=0.01,value=0, integer = False, parent=None,path=None):
         value = float(value)
         super(PicSpinBox, self).__init__(parent,value=value,int=integer,step=step)
 
-        imagePath = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Code\\gui\\resources\\' + icon
+        imagePath = path + 'Code\\gui\\resources\\' + icon
 
         self.pic = QtGui.QToolButton(self)
         self.pic.setIcon(QtGui.QIcon(imagePath))

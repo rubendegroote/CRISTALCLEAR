@@ -133,7 +133,7 @@ class Scanner(QtCore.QObject):
 
 
         if not self.settings.laser == 'CW without wavemeter':
-            relayPath = os.getcwd().split('CRISTALCLEAR')[0] + '\\CRISTALCLEAR\\Code\\builds\\CRISValueRelay\\CRISValueRelay4\\CrisValueRelay'
+            relayPath = self.settings.path + '\\Code\\builds\\CRISValueRelay\\CRISValueRelay4\\CrisValueRelay'
 
             self.relayProcess = subprocess.Popen(relayPath)
             self.messageQueue.put((True,'Relay VI started.'))

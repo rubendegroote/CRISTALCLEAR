@@ -37,8 +37,7 @@ class Launcher(QtGui.QWidget):
         self.layout.setAlignment(QtCore.Qt.AlignTop)
 
         picLabel = QtGui.QLabel()
-        imagePath = os.getcwd().split('CRISTALCLEAR')[0]\
-                + 'CRISTALCLEAR\\Code\\gui\\resources\\splash_loading'
+        imagePath = self.settings.path + 'Code\\gui\\resources\\splash_loading'
 
         pixmap = QtGui.QPixmap(imagePath)
         picLabel.setPixmap(pixmap)
@@ -188,7 +187,7 @@ class Launcher(QtGui.QWidget):
 
 
     def chooseLogBook(self):
-        folder = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Logbook\\'
+        folder =self.settings.path + 'Logbook\\'
         fileName = QtGui.QFileDialog.getOpenFileName(self, 'Choose logbook file', folder)
 
         self.settings.logFile = fileName

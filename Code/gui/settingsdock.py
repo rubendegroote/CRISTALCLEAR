@@ -225,7 +225,7 @@ class SettingsWidget(QtGui.QWidget):
 
 
     def chooseLogBook(self):
-        folder = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Logbook\\'
+        folder = self.settings.path + 'Logbook\\'
         fileName = QtGui.QFileDialog.getOpenFileName(self, 'Choose logbook file', folder)
 
         self.settings.logFile = fileName

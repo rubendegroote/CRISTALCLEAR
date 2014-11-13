@@ -34,15 +34,15 @@ if __name__ == "__main__":
 
     app = QtGui.QApplication(sys.argv)
 
-    path = os.getcwd().split('CRISTALCLEAR')[0] + '\\CRISTALCLEAR'
+    path = os.getcwd().split('Code')[0]
 
-    dirs = [path + '\\Data', path + '\\Logbook']
+    dirs = [path + '\Data',path + '\Data\Pictures', path + '\Logbook']
 
     for d in dirs:
         if not os.path.exists(d):
             os.makedirs(d)
 
-    m = MainWindow()
+    m = MainWindow(path)
 
 
     sys.exit(app.exec_())

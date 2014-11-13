@@ -15,7 +15,9 @@ from collections import OrderedDict
 
 class SessionSettings(dict):
 
-    def __init__(self):
+    def __init__(self,path):
+
+        self.path = path
 
         self.debugMode = False
 

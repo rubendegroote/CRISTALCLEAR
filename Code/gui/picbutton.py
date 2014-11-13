@@ -3,10 +3,10 @@ from PyQt4 import QtCore,QtGui
 import os
 
 class PicButton(QtGui.QPushButton):
-    def __init__(self,iconName,size,checkable = False):
+    def __init__(self,iconName,size,checkable = False, path = None):
         super(PicButton, self).__init__()
 
-        self.imagePath = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Code\\gui\\resources\\'
+        self.imagePath = path + 'Code\\gui\\resources\\'
 
         self.setStyleSheet(
             "QPushButton:checked {background-color: QLinearGradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #eef, stop: 1 #ccf)}")

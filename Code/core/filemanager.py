@@ -77,7 +77,7 @@ class FileManager():
         h = self.constructHeader() 
 
         # integrated count
-        path = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Data\\'
+        path = self.settings.path + '\\Data\\'
         f = file(path + name + ".data.csv", 'a')
 
         np.savetxt(f, data, delimiter=";",
@@ -108,7 +108,7 @@ class FileManager():
 
     def readData(self,name):
 
-        path = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Data\\'
+        path = self.settings.path + '\\Data\\'
         (_, _, filenames) = os.walk(path).next()
 
         files = [f  for f in filenames if name + ' scan ' in f]
