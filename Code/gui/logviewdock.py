@@ -60,27 +60,32 @@ class LogViewer(QtGui.QWidget):
      
         self.collapseAllButton = PicButton('collapse.png', checkable = False, size = 40,
             path = self.globalSession.settings.path)
+        self.collapseAllButton.setToolTip('Minimize all of the logbook entries.')
         self.collapseAllButton.clicked.connect(self.collapse)
         self.layout.addWidget(self.collapseAllButton,0,0)
 
         self.newEntryButton = PicButton('newentry.png', checkable = False, size = 40,
             path = self.globalSession.settings.path)
+        self.newEntryButton.setToolTip('Create a new logbook entry.')
         self.newEntryButton.clicked.connect(lambda: self.newEntry())
         self.layout.addWidget(self.newEntryButton,0,1)
 
         self.editEntryInfoButton = PicButton('newProp.png', checkable = False, size = 40,
             path = self.globalSession.settings.path)
+        self.editEntryInfoButton.setToolTip('Add a new property to all future logbook entries.')
         self.editEntryInfoButton.clicked.connect(self.addEntryProperty)
         self.layout.addWidget(self.editEntryInfoButton,0,2)
 
 
         self.filterButton = PicButton('filter.png', checkable = True, size = 40,
             path = self.globalSession.settings.path)
+        self.filterButton.setToolTip('Show the logbook filtering options.')
         self.filterButton.clicked.connect(self.toggleFilter)
         self.layout.addWidget(self.filterButton,0,4)
 
         self.openArchivedButton = PicButton('open.png', checkable = False, size = 40,
             path = self.globalSession.settings.path)
+        self.openArchivedButton.setToolTip('Load a different logbook.')
         self.openArchivedButton.clicked.connect(self.openLogbook)
         self.layout.addWidget(self.openArchivedButton,0,5)
 
@@ -325,6 +330,7 @@ class LogEntryWidget(FrameLayout):
 
         self.tagButton = PicButton('tag.png',checkable = False,size = 25,
             path = self.globalSession.settings.path)
+        self.tagButton.setToolTip('Click this to add a tag to this entry.')
         self.tagButton.clicked.connect(lambda: self.addTag(tag = None))
         self.grid.addWidget(self.tagButton,0,0)
 
@@ -343,6 +349,7 @@ class LogEntryWidget(FrameLayout):
                     propname = str(pkey)
                 if pkey=='comments':
                     self.texts[pkey] = QtGui.QTextEdit()
+                    self.texts[pkey].setToolTip('Type here to help future analysis with your info!')
                     self.texts[pkey].setText(self.entry.getProperty(pkey))
                 elif pkey == 'tags':
                     tags = self.entry.getProperty(pkey)
@@ -358,6 +365,7 @@ class LogEntryWidget(FrameLayout):
                     self.texts[pkey].setStyleSheet("border: 0px;");
                 else:
                     self.texts[pkey] = QtGui.QLineEdit(text = self.entry.getProperty(pkey))
+                    self.texts[pkey].setToolTip('Type here to help future analysis with your info!')
 
                 if not pkey == 'tags':
                     self.labels[pkey] = QtGui.QLabel(text = propname)
@@ -367,6 +375,7 @@ class LogEntryWidget(FrameLayout):
                     teller = teller + 1           
 
         self.editButton = QtGui.QPushButton(text = 'Confirm')
+        self.editButton.setToolTip('Click this to edit this entry/confirm your changes.')
         self.editButton.clicked.connect(self.confirmEntry)
         self.grid.addWidget(self.editButton,teller,1)
 
@@ -374,14 +383,14 @@ class LogEntryWidget(FrameLayout):
      
             self.graphButton = PicButton('graph.png',checkable = True,size = 40,
                 path = self.globalSession.settings.path)
+            self.graphButton.setToolTip('Click this to load the data of this capture\
+ and to create a graph that plots this data.')
             self.graphButton.clicked.connect(self.toggleGraph)
             self.grid.addWidget(self.graphButton, teller,0,1,1)
 
         self.widget.setLayout(self.grid)
         
         self.addWidget(self.widget)
-
-
 
     def addTag(self,tag = None):
 

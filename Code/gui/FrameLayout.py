@@ -21,6 +21,8 @@ class CollapsibleArrow(QtGui.QPushButton):
         imagePath = path + 'Code\\gui\\resources\\'
         self.arrowNameTrue = imagePath + 'minimizeBlue.png'
         self.arrowNameFalse = imagePath + 'maximizeBlue.png'
+
+        self.setToolTip('Click to maximize/minimize.')
         
     def setArrow(self, arrowDir = True):
         pass

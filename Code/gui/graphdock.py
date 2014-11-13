@@ -202,11 +202,13 @@ class MyGraph(QtGui.QWidget):
 
         self.saveButton = PicButton('save',checkable = False,size = 25,
             path = self.globalSession.settings.path)
+        self.saveButton.setToolTip('Save the current graph to file.')
         self.saveButton.clicked.connect(self.saveSpectrum)
         self.sublayout.addWidget(self.saveButton, 0,7,1,1)
 
         self.settingsButton = PicButton('settings',checkable = True,size = 25,
             path = self.globalSession.settings.path)
+        self.settingsButton.setToolTip('Display the advanced plotting options.')
         self.settingsButton.clicked.connect(self.showSettings)
         self.sublayout.addWidget(self.settingsButton, 0,8,1,1)
 
@@ -427,9 +429,9 @@ class MyGraph(QtGui.QWidget):
             self.logSignal.emit(volt, self.x + '_'+self.y)
 
     def saveSpectrum(self):
-        exp = exporter.ImageExporter(self.graph.plotItem)
+        exp = exporter.ImageExporter.ImageExporter(self.graph.plotItem)
 
-        path = self.settings.path + '\\Data\\Pictures\\'
+        path = self.globalSession.settings.path + '\\Data\\Pictures\\'
 
         name = QtGui.QFileDialog.getSaveFileName(self, "Save file", path, ".png")
 
@@ -437,7 +439,7 @@ class MyGraph(QtGui.QWidget):
         exp.parameters()['height'] = 1000
         exp.export(name)
 
-        exp = exporter.CSVExporter(self.graph.plotItem)
+        exp = exporter.CSVExporter.CSVExporter(self.graph.plotItem)
         exp.export(str(name).strip('.png')+'.csv')
 
 

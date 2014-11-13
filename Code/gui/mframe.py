@@ -183,6 +183,7 @@ process terminated non-gracefully. \n\n Error message: \n' + error
 
     def onNew(self):
         self.controlButton.setIcon('start.png')
+        self.controlButton.setToolTip('Click here to initialize start the capture.')
         self.controlButton.clicked.disconnect(self.onNew)
         self.controlButton.clicked.connect(self.onStartCapture)
 
@@ -220,6 +221,7 @@ process terminated non-gracefully. \n\n Error message: \n' + error
             self.centralDock.docks[dock].updateToCurrentCapture()
 
         self.controlButton.setIcon('stop.png')
+        self.controlButton.setToolTip('Click here to stop the current capture.')
         self.controlButton.clicked.disconnect(self.onStartCapture)
         self.controlButton.clicked.connect(self.onStopCapture)
 
@@ -232,6 +234,7 @@ process terminated non-gracefully. \n\n Error message: \n' + error
         self.scannerWidget.enable()
         
         self.controlButton.setIcon('new.png')
+        self.controlButton.setToolTip('Click here to initialize a new capture.')
         self.controlButton.clicked.disconnect(self.onStopCapture)
         self.controlButton.clicked.connect(self.onNew)
 

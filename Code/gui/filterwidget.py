@@ -49,6 +49,9 @@ class FilterWidget(QtGui.QWidget):
         self.searchWidgetsLayout = QtGui.QVBoxLayout(searchContainer)
 
         self.searchModeCheckBox = QtGui.QCheckBox('Match all conditions')
+        self.searchModeCheckBox.setToolTip('Check this if you ant all your\
+ search criteria to be matched simultaneously (i.e. taking the logical \'and\'\
+ of all the criteria rather than the \'or\'.')
         self.searchWidgetsLayout.addWidget(self.searchModeCheckBox)
         self.searchModeCheckBox.stateChanged.connect(self.search)
         self.splitter2.addWidget(searchContainer)
@@ -66,6 +69,9 @@ class FilterWidget(QtGui.QWidget):
         self.tagSelectorWidgetsLayout = QtGui.QVBoxLayout(tagContainer)
 
         self.tagModeCheckBox = QtGui.QCheckBox('Match all tags')
+        self.tagModeCheckBox.setToolTip('Check this if you ant all your\
+ tags to be matched simultaneously (i.e. taking the logical \'and\'\
+ of all the tags rather than the \'or\'.')
         self.tagSelectorWidgetsLayout.addWidget(self.tagModeCheckBox)
         self.tagModeCheckBox.stateChanged.connect(self.search)
         self.splitter1.addWidget(tagContainer)
@@ -263,6 +269,7 @@ class TypesWidget(QtGui.QWidget):
         i=0
         for i,t in enumerate(types):
             check = QtGui.QCheckBox(t)
+            check.setToolTip('Check this if you want to add this type of entry to the filter.')
             self.checks[t] = check
             check.setChecked(True)
             check.stateChanged.connect(self.requestSearch.emit)
@@ -309,6 +316,10 @@ class SearchWidget(QtGui.QWidget):
         self.searchBar.returnPressed.connect(self.requestSearch)
         self.layout.addWidget(self.searchBar)
 
+        self.propSelector.setToolTip('Use this to choose a property you want to filter by.')
+        self.searchBar.setToolTip('Type something here to filter the property you pick with\
+ the combobox to the left.')
+
 class TagSelector(QtGui.QComboBox):
     tagChanged = QtCore.Signal(object)
     def __init__(self, tags):
@@ -319,4 +330,6 @@ class TagSelector(QtGui.QComboBox):
         self.addItems(self.tags)
         self.currentIndexChanged.connect(
             lambda: self.tagChanged.emit(self))
+
+        self.setToolTip('Use this to choose a tag you want to filter by.')
 

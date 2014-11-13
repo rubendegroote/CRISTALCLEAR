@@ -28,7 +28,6 @@ pg.setConfigOption('foreground', 'k')
 
 if __name__ == "__main__":
 
-    
     # add freeze support
     freeze_support()
 
@@ -36,11 +35,15 @@ if __name__ == "__main__":
 
     path = os.getcwd().split('Code')[0]
 
+    print 'checking directory structure...'
+
     dirs = [path + '\Data',path + '\Data\Pictures', path + '\Logbook']
 
     for d in dirs:
         if not os.path.exists(d):
             os.makedirs(d)
+
+    print 'Seems fine...'
 
     m = MainWindow(path)
 

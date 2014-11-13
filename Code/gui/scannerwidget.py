@@ -31,11 +31,17 @@ class ScannerWidget(QtGui.QWidget):
 
         self.controlButton = PicButton('new', checkable = False,size = 100,
                                     path = self.globalSession.settings.path)
+        self.controlButton.setToolTip('Click here to initialize a new capture.')
         self.layout.addWidget(self.controlButton,0,2,1,1)
 
         sublayout = QtGui.QVBoxLayout()
 
         self.modeCombo = QtGui.QComboBox()
+        self.modeCombo.setToolTip('Choose the criterium to be used for deciding\
+ the length of a step in a scan. <b>Time</b>: wait for a specified time, \
+ <b>Triggers</b>: wait for a specified number of triggers,<b>Supercycle</b>:\
+ wait for a specified number of supercycles, <b>Proton Pulse</b>:\
+ wait for a specified number of proton pulses.')
         self.modes = ['Time','Triggers', 'Supercycle', 'Proton Pulse']
         self.modeCombo.addItems(self.modes)
         self.modeCombo.currentIndexChanged.connect(self.changeMode)
@@ -44,6 +50,8 @@ class ScannerWidget(QtGui.QWidget):
 
         self.timeEdit = PicSpinBox(value = 10,step = 1, integer=True, 
                     icon = 'time', path = self.settings.path)
+        self.timeEdit.setToolTip('Use this to specify the waiting\
+ information per step for the chosen criterium (see combobox above).')
         self.timeEdit.sigValueChanging.connect(self.changeMode)
         self.timeEdit.setMaximumWidth(120)
         sublayout.addWidget(self.timeEdit)
@@ -53,10 +61,13 @@ class ScannerWidget(QtGui.QWidget):
 
         self.freeScanWidget = FreeScanWidget(parent = self, globalSession = globalSession)
         tabWidget.addTab(self.freeScanWidget,QtGui.QIcon('./gui/resources/manual'),'')
+        tabWidget.setTabToolTip(0,'This tab is used for free scanning of the laser: manually\
+ set the voltage yourself each time.')
 
         self.autoScanWidget = QtGui.QWidget()
         layout = QtGui.QGridLayout(self.autoScanWidget)
         tabWidget.addTab(self.autoScanWidget,QtGui.QIcon('./gui/resources/auto'),'')
+        tabWidget.setTabToolTip(1,'This tab is used for automatic scanning of the laser.')
 
         self.intermediatePointsLayout = QtGui.QGridLayout()
         layout.addLayout(self.intermediatePointsLayout,1,4,1,1)
@@ -64,6 +75,7 @@ class ScannerWidget(QtGui.QWidget):
         self.points = []
 
         self.points.append(QtGui.QDoubleSpinBox())
+        self.points[-1].setToolTip('Use this to define the starting point of the scan.')
         self.points[0].setDecimals(4)
         self.points[0].setRange(-10**7,10**7)
         self.points[0].setMaximumWidth(75)
@@ -72,6 +84,7 @@ class ScannerWidget(QtGui.QWidget):
         self.intermediatePointsLayout.addWidget(self.points[0],0,0)
 
         self.points.append(QtGui.QDoubleSpinBox())
+        self.points[-1].setToolTip('Use this to define the end point of the scan.')
         self.points[-1].setDecimals(4)
         self.points[-1].setRange(-10**7,10**7)
         self.points[-1].setMaximumWidth(75)
@@ -82,6 +95,8 @@ class ScannerWidget(QtGui.QWidget):
         self.steps = []
         self.steps.append(PicSpinBox(icon = 'step.png',step = 1, 
             integer=True, path = self.settings.path))
+        self.steps[-1].setToolTip('Use this to define the desired number of\
+ steps in the scanning interval.')
         self.steps[-1].sigValueChanging.connect(self.makeFreqArray)
         self.intermediatePointsLayout.addWidget(self.steps[0],0,1)
         self.steps[0].setAlignment(QtCore.Qt.AlignCenter)
@@ -89,11 +104,15 @@ class ScannerWidget(QtGui.QWidget):
 
         self.rampButton = PicButton('zig', checkable = False,size = 40,
                                     path = self.globalSession.settings.path)
+        self.rampButton.setToolTip('Click this button to toggle between a sawtooth\
+ scan (button not pressed) and a back-and-forth triangular scan (button pressed down).')
         layout.addWidget(self.rampButton,0,0,1,1)
         self.rampButton.clicked.connect(self.toggleZigZag)
 
         self.loopButton = PicButton('loop', checkable = True,size = 40,
                                     path = self.globalSession.settings.path)
+        self.loopButton.setToolTip('Click this button to toggle between single\
+ scanning (button not pressed) and repeated \'looped\' scanning (button pressed down).')
         layout.addWidget(self.loopButton,0,1,1,1)
         self.loopButton.clicked.connect(self.toggleLoop)
 
@@ -108,6 +127,7 @@ class ScannerWidget(QtGui.QWidget):
         layout.addWidget(self.markerContainer,0,4,1,3)
 
         self.slider = NoClickSlider(orientation=QtCore.Qt.Horizontal)
+        self.slider.setToolTip('This slider shows the progress in the current scan.')
         layout.addWidget(self.slider,0,4,1,3)
         self.slider.clickPos.connect(self.addPoint)
 
@@ -199,6 +219,7 @@ class ScannerWidget(QtGui.QWidget):
 
         newPoint = PicSpinBox(icon = 'marker',value = freq, 
             step = 0.001, path = self.settings.path)
+        newPoint.setToolTip('Change the position of this intermediate point in the scanning region.')
         self.points.insert(-1,newPoint)
         self.points[-2].setMaximumWidth(150)
         self.points[-2].sigValueChanging.connect(self.updateMarkerPos)
@@ -207,7 +228,8 @@ class ScannerWidget(QtGui.QWidget):
 
         newStep = PicSpinBox(icon = 'step',step = 1, 
             integer=True, path = self.settings.path)
-        self.steps.append(newStep)
+        self.steps.append(newStep)        
+        self.steps[-1].setToolTip('Use this to define the desired number of steps in the scanning interval.')
         self.steps[-1].sigValueChanging.connect(self.makeFreqArray)
         self.steps[-1].setAlignment(QtCore.Qt.AlignCenter)
         self.intermediatePointsLayout.addWidget(self.steps[-1],0,2*len(self.points[1:-1])+1)
@@ -263,6 +285,9 @@ class Marker(QtGui.QLabel):
         self.setGeometry(10, 10, 20, 20)
         self.setScaledContents(True)
         self.setPixmap(QtGui.QPixmap('./gui/resources/marker'))
+
+        self.setToolTip('Drag this marker around to change this\
+ intermediate point in the scan. Right-click to remove it.')
 
         self.pos = 0
         self.freqPos = 0
@@ -324,6 +349,9 @@ class FreeScanWidget(QtGui.QWidget):
         self.freqLabel = QtGui.QLabel('Voltage Setpoint')
         self.layout.addWidget(self.freqLabel,0,3)
         self.waveLengthSpinBox = QtGui.QDoubleSpinBox(parent = self)
+        self.waveLengthSpinBox.setToolTip('Use this to choose an output\
+ voltage to send to the laser. <b>To actually send this setpoint to the\
+ laser, click the \'Set Voltage\' button <\b>')
         self.waveLengthSpinBox.setDecimals(4)
         self.waveLengthSpinBox.setRange(-10**7,10**7)
         self.waveLengthSpinBox.setMaximumWidth(120)
@@ -333,6 +361,7 @@ class FreeScanWidget(QtGui.QWidget):
         self.waveReadBackLabel = QtGui.QLabel('Wavelength Readback')
         self.layout.addWidget(self.waveReadBackLabel,0,5)
         self.waveLengthReadBack = QtGui.QLineEdit()
+        self.waveLengthReadBack.setToolTip('This shows the readback of the wavelength meter.')
         self.waveLengthReadBack.setMaximumWidth(120)
         self.waveLengthReadBack.setMinimumWidth(120)
         self.waveLengthReadBack.setReadOnly(True)
@@ -347,6 +376,7 @@ class FreeScanWidget(QtGui.QWidget):
         self.thinLabel = QtGui.QLabel('Thin Etalon Readback')
         self.layout.addWidget(self.thinLabel,1,5)
         self.thinReadBack = QtGui.QLineEdit()
+        self.thinReadBack.setToolTip('This shows the readback of the thin etalon stepper motor.')
         self.thinReadBack.setMaximumWidth(120)
         self.thinReadBack.setMinimumWidth(120)
         self.thinReadBack.setReadOnly(True)
@@ -362,6 +392,7 @@ class FreeScanWidget(QtGui.QWidget):
         self.thickLabel = QtGui.QLabel('Thick Etalon Readback')
         self.layout.addWidget(self.thickLabel,2,5)
         self.thickReadBack = QtGui.QLineEdit()
+        self.thickReadBack.setToolTip('This shows the readback of the thick etalon stepper motor.')
         self.thickReadBack.setMaximumWidth(120)
         self.thickReadBack.setMinimumWidth(120)
         self.thickReadBack.setReadOnly(True)
@@ -369,6 +400,7 @@ class FreeScanWidget(QtGui.QWidget):
         self.layout.addWidget(self.thickReadBack,2,6)
 
         self.setButtonWL = QtGui.QPushButton('Set Voltage')
+        self.setButtonWL.setToolTip('Use this to choose an output voltage to send to the laser.')
         self.setButtonWL.setIconSize( QtCore.QSize(35, 35))
         # self.confirmButton.setIcon(QtGui.QIcon('./gui/resources/loop'))
         self.layout.addWidget(self.setButtonWL,1,4)
