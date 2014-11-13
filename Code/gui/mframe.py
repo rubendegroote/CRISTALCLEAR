@@ -308,6 +308,9 @@ process terminated non-gracefully. \n\n Error message: \n' + error
         """
         path = self.settings.path + 'doc\\report.pdf'
         os.startfile(path)
+        path = self.settings.path + 'doc\\report_from_web.pdf'
+        os.startfile(path)
+
 
     def closeEvent(self,event):
         """
