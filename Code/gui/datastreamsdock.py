@@ -28,6 +28,32 @@ from graphsettings import GraphSettingsWidget
 from dock import Dock
 import pyqtgraph.exporters as exporter
 
+labelDict = {'ion': 'Ion Counts',
+             'time': 'Epoch time',
+             'ai0': 'Voltage photodiode 1',
+             'ai1': 'Voltage photodiode 2',
+             'ai2': 'Voltage photodiode 3',
+             'freq': 'Wavemeter frequency',
+             'volt': 'Scanning voltage',
+             'rate': 'Rate averaged over 10 samples',
+             'Power': 'Laser Power',
+             'Linewidth': 'Laser Linewidth',
+             'thick': 'Thick etalon setpoint',
+             'thin': 'Thin etalon setpoint'}
+
+unitsDict = {'ion': 'Hz',
+             'time': 's',
+             'ai0': 'V',
+             'ai1': 'V',
+             'ai2': 'V',
+             'freq': 'Hz',
+             'volt': 'V',
+             'rate': 'Hz',
+             'Power': 'mW',
+             'Linewidth': 'Hz',
+             'thick': '',
+             'thin': ''}
+
 class DataStreamsDock(Dock):
 
     def __init__(self,name,size,globalSession):
@@ -68,19 +94,8 @@ class DataStreamGraph(QtGui.QWidget):
         self.toPlot = []
         self.graphs = dict()
         self.curves = dict()
-
-        self.labelDict = {'ion': 'Ion Counts',
-                          'time': 'Epoch time (s)',
-                          'ai0': 'Voltage photodiode 1 (V)',
-                          'ai1': 'Voltage photodiode 2 (V)',
-                          'ai2': 'Voltage photodiode 3 (V)',
-                          'freq': 'Wavemeter frequency (GHz)',
-                          'volt': 'Scanning voltage (V)',
-                          'rate': 'Rate averaged over 10 samples (Hz)',
-                          'Power': 'Laser Power',
-                          'Linewidth': 'Laser Linewidth (GHz)',
-                          'thick': 'Thick etalon setpoint',
-                          'thin': 'Thin etalon setpoint'}
+        self.t0 = time.time()
+        self.t0_formatted = time.strftime('%d-%m-%Y %H:%M:%S', time.localtime(self.t0))
 
         self.layout = QtGui.QGridLayout(self)
 
@@ -105,7 +120,7 @@ class DataStreamGraph(QtGui.QWidget):
     def plot(self):
         for key in self.graphs.iterkeys():
             if key in self.toPlot:
-                x = self.globalSession.dataStreams['time'].data
+                x = self.globalSession.dataStreams['time'].data - self.t0
                 y = self.globalSession.dataStreams[key].data
                 l = min(len(x),len(y))
                 self.curves[key].setData(x[:l],y[:l], pen = 'r')
@@ -129,7 +144,12 @@ class DataStreamGraph(QtGui.QWidget):
         for key in self.globalSession.dataStreams.iterkeys():
             if key in self.toPlot:
                 if not key in self.graphs.iterkeys():
-                    self.graphs[key] = pg.PlotItem(title = self.labelDict[str(key)])
+                    self.graphs[key] = pg.PlotItem()
+                    # self.t0 = self.globalSession.dataStreams['time'].data[0]
+                    self.graphs[key].setLabel('bottom', 
+                        text = 'Time since {0}'.format(self.t0_formatted), units = 's')
+                    self.graphs[key].setLabel('left', text = labelDict[str(key)],
+                                                      units = unitsDict[str(key)])
 
                     self.curves[key] = pg.PlotCurveItem()
                     self.graphs[key].addItem(self.curves[key])
@@ -181,7 +201,5 @@ class DataStreamSettingsWidget(QtGui.QWidget):
 
 
     def updateSettings(self):
-
         self.toPlot = [key for key, val in self.plotChecks.iteritems() if val.checkState()]
-
         self.settingsChanged.emit(self.toPlot)

@@ -102,12 +102,9 @@ class GlobalSession:
 
         self.running = False
 
-        self.streamsToSave = []
-
         self.createDataStream()
         self.dataStreamThread = threading.Timer(0, self.dataStream).start()
-
-        self.logLoadThread = threading.Timer(0, self.loadLogBook).start()
+        logLoadThread = threading.Timer(0, self.loadLogBook).start()
 
 
     def createDataStream(self):

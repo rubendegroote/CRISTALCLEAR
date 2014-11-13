@@ -26,8 +26,19 @@ from dock import Dock
 import pyqtgraph.exporters as exporter
 from core.metacapture import MetaCapture
 
+labelDict = {'ion': 'ion rate',
+             'time': 'Epoch time',
+             'ai0': 'Voltage photodiode 1',
+             'ai1': 'Voltage photodiode 2',
+             'ai2': 'Voltage photodiode 3',
+             'freq': 'Wavelength',
+             'volt': 'Scanning voltage',
+             'power': 'Power of laser',
+             'lw': 'Linewidth of laser',
+             'thick': 'Thick etalon setpoint',
+             'thin': 'Thin etalon setpoint'}
 
-units = {'ion': 'Hz',
+unitsDict = {'ion': 'Hz',
          'time': 's',
          'ai0': 'V',
          'ai1': 'V',
@@ -104,19 +115,6 @@ class MyGraph(QtGui.QWidget):
 
         self.title = title
 
-        self.labelDict = {'ion': 'ion rate',
-                          'time': 'Epoch time',
-                          'ai0': 'Voltage photodiode 1',
-                          'ai1': 'Voltage photodiode 2',
-                          'ai2': 'Voltage photodiode 3',
-                          'freq': 'Wavelength',
-                          'volt': 'Scanning voltage',
-                          'power': 'Power of laser',
-                          'lw': 'Linewidth of laser',
-                          'thick': 'Thick etalon setpoint',
-                          'thin': 'Thin etalon setpoint'}
-
-
         self.labelStyle = {'font-size': '18pt'}
 
         gView = pg.GraphicsView()
@@ -134,10 +132,14 @@ class MyGraph(QtGui.QWidget):
         layout.addLayout(self.sublayout,1,0)
 
         self.comboY = QtGui.QComboBox(parent = None)
+        self.comboY.setToolTip('Choose the variable you want to put\
+ on the Y-axis.')
         self.comboY.currentIndexChanged.connect(self.updatePlot)
         self.sublayout.addWidget(self.comboY,0,1)
 
         self.comboY2 = QtGui.QComboBox(parent = None)
+        self.comboY2.setToolTip('Choose the variable you want to\
+ divide the first Y-varible by.')
         self.comboY2.setVisible(False)
         self.comboY2.currentIndexChanged.connect(self.updatePlot)
         self.sublayout.addWidget(self.comboY2,0,2)
@@ -147,20 +149,28 @@ class MyGraph(QtGui.QWidget):
         self.sublayout.addWidget(label,0,3)
 
         self.comboX = QtGui.QComboBox(parent = None)
+        self.comboX.setToolTip('Choose the variable you want to put\
+ on the X-axis.')
         self.comboX.currentIndexChanged.connect(self.updatePlot)
         self.sublayout.addWidget(self.comboX,0,4)
 
         self.mathCheckBox = QtGui.QCheckBox('Mathy math math')
+        self.mathCheckBox.setToolTip('Check this box if you want to some\
+ math on the data before it is plotted.')
         self.mathCheckBox.stateChanged.connect(self.enableMathPanel)
         self.sublayout.addWidget(self.mathCheckBox,1,0)
 
         self.freqUnitSelector = QtGui.QComboBox(parent = None)
+        self.freqUnitSelector.setToolTip('Choose the units you want to\
+ display the frequency in.')
         self.freqUnitSelector.addItems(['Frequency','Wavelength'])
         self.freqUnitSelector.currentIndexChanged.connect(self.updatePlot)
         self.sublayout.addWidget(self.freqUnitSelector,0,5)
 
-        self.meanStyles = ['Combined','Per Capture', 'Seperate']
+        self.meanStyles = ['Combined','Per Capture', 'Per Scan']
         self.meanBox = QtGui.QComboBox(self)
+        self.meanBox.setToolTip('Choose how you want to combine data\
+ from all of the scans in the captures this graph plots.')
         self.meanBox.addItems(self.meanStyles)
         self.meanBox.setCurrentIndex(1)
         self.meanBox.setMaximumWidth(110)
@@ -170,6 +180,8 @@ class MyGraph(QtGui.QWidget):
         self.graphStyles = ['Step (histogram)', 'Line']#, 'Point']
 
         self.graphBox = QtGui.QComboBox(self)
+        self.graphBox.setToolTip('Choose how you want to plot the data:\
+ as a binned histogram, or the raw data. The latter strains the a lot pc though!')
         self.graphBox.addItems(self.graphStyles)
         self.graphBox.setCurrentIndex(0)
         self.graphBox.setMaximumWidth(110)
@@ -179,6 +191,8 @@ class MyGraph(QtGui.QWidget):
         self.binLabel = QtGui.QLabel(self, text="Bin size: ")
         self.binSpinBox = pg.SpinBox(value = 0.03,
             bounds = (0,None), dec = False)
+        self.binSpinBox.setToolTip('Choose the bin size\
+ used to bin the data.')
         self.binSpinBox.setMaximumWidth(110)
         self.binSpinBox.sigValueChanged.connect(self.updatePlot)
         
@@ -186,11 +200,13 @@ class MyGraph(QtGui.QWidget):
         self.sublayout.addWidget(self.binSpinBox,2,4)      
         
 
-        self.saveButton = PicButton('save',checkable = False,size = 25)
+        self.saveButton = PicButton('save',checkable = False,size = 25,
+            path = self.globalSession.settings.path)
         self.saveButton.clicked.connect(self.saveSpectrum)
         self.sublayout.addWidget(self.saveButton, 0,7,1,1)
 
-        self.settingsButton = PicButton('settings',checkable = True,size = 25)
+        self.settingsButton = PicButton('settings',checkable = True,size = 25,
+            path = self.globalSession.settings.path)
         self.settingsButton.clicked.connect(self.showSettings)
         self.sublayout.addWidget(self.settingsButton, 0,8,1,1)
 
@@ -387,7 +403,7 @@ class MyGraph(QtGui.QWidget):
                 else:
                     xunit = 'Hz'
             else:
-                xunit = units[self.x]
+                xunit = unitsDict[self.x]
 
             if self.mathCheckBox.checkState() == 2:
                 yunit = ''
@@ -399,11 +415,11 @@ class MyGraph(QtGui.QWidget):
                     else:
                         yunit = 'Hz'
                 else:
-                    yunit = units[self.y]
+                    yunit = unitsDict[self.y]
 
-                self.graph.setLabel('left', text = self.y, units = yunit)
+                self.graph.setLabel('left', text = labelDict[self.y], units = yunit)
 
-            self.graph.setLabel('bottom', text = self.x, units = xunit)
+            self.graph.setLabel('bottom', text = labelDict[self.x], units = xunit)
 
     def emitLogSignal(self,volt):
         if not str(self.comboX.currentText()) =='' \
@@ -413,7 +429,7 @@ class MyGraph(QtGui.QWidget):
     def saveSpectrum(self):
         exp = exporter.ImageExporter(self.graph.plotItem)
 
-        path = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Data\\Pictures\\'
+        path = self.settings.path + '\\Data\\Pictures\\'
 
         name = QtGui.QFileDialog.getSaveFileName(self, "Save file", path, ".png")
 

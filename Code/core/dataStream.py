@@ -18,8 +18,6 @@ class StreamedData():
 
         self.rate = 0.0
 
-        self.teller = 0
-
         self.fileNo = 0
 
         self.saveFile = None
@@ -38,37 +36,6 @@ class StreamedData():
             
             self.times = np.roll(self.times,-len(times))
             self.times[-len(times):] = times
-
-        if self.name in self.globalSession.streamsToSave:
-
-            if self.saveFile == None:
-                self.makeNewFile()
-
-            self.teller = self.teller + 1
-            self.totalSaved = self.totalSaved + 1
-
-            if self.teller > 50:
-                now = time.time()
-                toSave = np.column_stack([self.times[-self.teller:],
-                                            self.data[-self.teller:]])
-                
-                np.savetxt(self.saveFile,toSave, delimiter=";")
-                
-                self.teller = 0
-
-                if self.totalSaved > 5*10**5:
-                    self.makeNewFile()
-
-        else:
-            self.teller = 0
-
-    def makeNewFile(self):
-        self.totalSaved = 0
-
-        self.saveFile = file(os.getcwd().split('Code')[0]+'data\\streams\\' + self.name + "Stream" + str(self.fileNo) +  ".csv", 'a')
-
-        self.fileNo = self.fileNo + 1
-
 
     def getData(self):
         return self.data

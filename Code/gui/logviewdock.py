@@ -58,24 +58,29 @@ class LogViewer(QtGui.QWidget):
         self.setLayout(self.layout)
 
      
-        self.collapseAllButton = PicButton('collapse.png', checkable = False, size = 40)
+        self.collapseAllButton = PicButton('collapse.png', checkable = False, size = 40,
+            path = self.globalSession.settings.path)
         self.collapseAllButton.clicked.connect(self.collapse)
         self.layout.addWidget(self.collapseAllButton,0,0)
 
-        self.newEntryButton = PicButton('newentry.png', checkable = False, size = 40)
+        self.newEntryButton = PicButton('newentry.png', checkable = False, size = 40,
+            path = self.globalSession.settings.path)
         self.newEntryButton.clicked.connect(lambda: self.newEntry())
         self.layout.addWidget(self.newEntryButton,0,1)
 
-        self.editEntryInfoButton = PicButton('newProp.png', checkable = False, size = 40)
+        self.editEntryInfoButton = PicButton('newProp.png', checkable = False, size = 40,
+            path = self.globalSession.settings.path)
         self.editEntryInfoButton.clicked.connect(self.addEntryProperty)
         self.layout.addWidget(self.editEntryInfoButton,0,2)
 
 
-        self.filterButton = PicButton('filter.png', checkable = True, size = 40)
+        self.filterButton = PicButton('filter.png', checkable = True, size = 40,
+            path = self.globalSession.settings.path)
         self.filterButton.clicked.connect(self.toggleFilter)
         self.layout.addWidget(self.filterButton,0,4)
 
-        self.openArchivedButton = PicButton('open.png', checkable = False, size = 40)
+        self.openArchivedButton = PicButton('open.png', checkable = False, size = 40,
+            path = self.globalSession.settings.path)
         self.openArchivedButton.clicked.connect(self.openLogbook)
         self.layout.addWidget(self.openArchivedButton,0,5)
 
@@ -97,17 +102,33 @@ class LogViewer(QtGui.QWidget):
         self.layout.setRowStretch(1,1)
         self.layout.addWidget(self.filterWidget,2,1,1,5)
 
-        self.resetLayout()
+        self.clearLayout()
+        self.update()
 
     def openLogbook(self):
-        folder = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Logbook\\'
+        folder = self.settings.path + 'Logbook\\'
         fileName = QtGui.QFileDialog.getOpenFileName(self, 'Choose logbook file', folder)
 
-        self.globalSession.setttings.logFile = fileName
-        self.globalSession.loadLogBook()
 
-        self.resetLayout()
+        self.globalSession.settings.logFile = fileName
+        logLoadThread = threading.Timer(0, self.globalSession.loadLogBook).start()
 
+        self.clearLayout()
+        progressLabel = QtGui.QLabel()
+        self.entryContainersLayout.addWidget(progressLabel)
+
+        message = self.globalSession.scanner.messageQueue.get()
+        while not message[0]:
+            message = self.globalSession.scanner.messageQueue.get()
+            progressLabel.setText(message[1])
+
+            QtGui.QApplication.processEvents()
+
+        self.entryContainersLayout.removeWidget(progressLabel)
+        progressLabel.setParent(None)
+
+        self.clearLayout()
+        self.update()
 
     def newEntryContainer(self):
         entryContainer = QtGui.QGridLayout()
@@ -189,16 +210,14 @@ class LogViewer(QtGui.QWidget):
             if not val.isCollapsed:
                 val.collapse()
 
-    def resetLayout(self):
-
+    def clearLayout(self):
         self.logBook = self.globalSession.logBook
         self.filteredLog = self.logBook.values()
 
         self.filterWidget.initUI()
         self.filterWidget.updateToCurrentLog(self.logBook)
-        self.filterWidget.search()
 
-        for container in self.entryContainers:
+        for container in reversed(self.entryContainers):
             for i in reversed(range(container.count())): 
                 widgetToRemove = container.itemAt(i).widget() 
                 # get it out of the layout list 
@@ -210,9 +229,9 @@ class LogViewer(QtGui.QWidget):
         self.entryContainers = []
         self.newEntryContainer()
 
-        self.update()
-
     def update(self):
+        self.logBook = self.globalSession.logBook
+
         # print 'make filter update as well!'
         for (key, entry) in self.logBook.iteritems():
             
@@ -245,7 +264,6 @@ class LogViewer(QtGui.QWidget):
                     self.logEntryWigets[key].setVisible(True)
                     self.logEntryWigets[key].collapse()
 
-
                 # Update label for the capture entries
                 if entry.__class__.__name__ == 'CaptureLogEntry':
                     text = self.logEntryWigets[key].text
@@ -264,7 +282,6 @@ class LogViewer(QtGui.QWidget):
                 if key in self.logEntryWigets.keys():
                     self.logEntryWigets[key].setVisible(False)
 
-        self.collapse()
 
     def timeStampCapture(self):
         cap,log = self.globalSession.getCurrentCaptureAndLog()
@@ -284,11 +301,13 @@ class LogEntryWidget(FrameLayout):
     updated = QtCore.Signal(object) #emitted the new entry when added
 
     def __init__(self,globalSession,text = '', entry=None):
-        super(LogEntryWidget, self).__init__(text=text)
+        super(LogEntryWidget, self).__init__(text=text,path = globalSession.settings.path)
 
-        self.entry = entry
         self.globalSession = globalSession
         self.logBook = self.globalSession.logBook
+        self.entry = entry
+        self.chooseColor()
+        self.toggleCollapsed()
 
         self.tags = set()
 
@@ -304,7 +323,8 @@ class LogEntryWidget(FrameLayout):
 
     def createFrame(self):
 
-        self.tagButton = PicButton('tag.png',checkable = False,size = 25)
+        self.tagButton = PicButton('tag.png',checkable = False,size = 25,
+            path = self.globalSession.settings.path)
         self.tagButton.clicked.connect(lambda: self.addTag(tag = None))
         self.grid.addWidget(self.tagButton,0,0)
 
@@ -352,14 +372,15 @@ class LogEntryWidget(FrameLayout):
 
         if self.entry.__class__.__name__ == 'CaptureLogEntry':
      
-            self.graphButton = PicButton('graph.png',checkable = True,size = 40)
+            self.graphButton = PicButton('graph.png',checkable = True,size = 40,
+                path = self.globalSession.settings.path)
             self.graphButton.clicked.connect(self.toggleGraph)
             self.grid.addWidget(self.graphButton, teller,0,1,1)
 
         self.widget.setLayout(self.grid)
+        
         self.addWidget(self.widget)
 
-        self.chooseColor()
 
 
     def addTag(self,tag = None):
@@ -378,7 +399,7 @@ class LogEntryWidget(FrameLayout):
         self.tags.add(str(tag))
         self.entry.properties['tags'] = self.tags
 
-        tag = Tag(str(tag))
+        tag = Tag(str(tag),path = self.globalSession.settings.path)
         tag.remove.connect(self.removeTag)
         self.tagsLayout.addWidget(tag)
 
@@ -438,7 +459,7 @@ class LogEntryWidget(FrameLayout):
         self.editButton.clicked.connect(self.confirmEntry)
 
     def chooseColor(self):
-        imagePath = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Code\\gui\\resources\\'
+        imagePath = self.globalSession.settings.path + 'Code\\gui\\resources\\'
 
         if self.entry.__class__.__name__ == 'CaptureLogEntry':
             self.titleFrame.setStyleSheet("QFrame {\
@@ -492,7 +513,7 @@ class LogEntryWidget(FrameLayout):
 
 class Tag(QtGui.QFrame):
     remove = QtCore.Signal(object)
-    def __init__(self, text = ''):
+    def __init__(self, text = '',path = None):
         super(Tag,self).__init__()
 
         layout = QtGui.QHBoxLayout(self)
@@ -503,7 +524,7 @@ class Tag(QtGui.QFrame):
 
         layout.addWidget(self.label)
 
-        imagePath = os.getcwd().split('CRISTALCLEAR')[0] + 'CRISTALCLEAR\\Code\\gui\\resources\\'
+        imagePath = path + 'Code\\gui\\resources\\'
         self.closeButton = QtGui.QPushButton(self)
         self.closeButton.setMinimumWidth(15)
         self.closeButton.setMinimumHeight(15)

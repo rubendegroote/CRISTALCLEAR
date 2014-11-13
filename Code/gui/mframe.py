@@ -16,6 +16,7 @@ import pyqtgraph.dockarea as da
 import numpy as np
 import os
 import threading
+import time
 
 from centraldockarea import CentralDockArea
 from core.session import GlobalSession
@@ -39,10 +40,10 @@ class MainWindow(QtGui.QMainWindow):
     """
     errorFound = QtCore.Signal(object)
 
-    def __init__(self):
+    def __init__(self, path):
         super(MainWindow, self).__init__()
 
-        settings = SessionSettings()
+        settings = SessionSettings(path)
     
         self.launcher = Launcher(settings)
         self.launcher.show()
@@ -111,41 +112,48 @@ process terminated non-gracefully. \n\n Error message: \n' + error
             self.controlButton = self.scannerWidget.controlButton
             self.controlButton.clicked.connect(self.onNew)
 
-        self.helpButton = PicButton('help',size = 70)
+        self.helpButton = PicButton('help',size = 70,
+                                path = self.globalSession.settings.path)
         self.helpButton.setToolTip('Launch a pdf document with more\
  information on the CRISTAL software.')
         self.helpButton.clicked.connect(self.onDocumentation)
 
         if self.settings.cristalMode:
-            self.graphButton = PicButton('graph', checkable = True,size = 70)
-            self.graphButton.setToolTip('Show the stream of raw data\
+            self.graphButton = PicButton('graph', checkable = True,size = 70,
+                                    path = self.globalSession.settings.path)
+            self.graphButton.setToolTip('Show or hide the stream of raw data\
  collected by the NI data card.')
             self.graphButton.clicked.connect(self.showDataStream)
             
-            self.plotButton = PicButton('plot.png',size = 70)
+            self.plotButton = PicButton('plot.png',size = 70,
+                                    path = self.globalSession.settings.path)
             self.plotButton.setToolTip('Create a new graphing canvas to show the \
  data is it is collected.')
             self.plotButton.clicked.connect(self.centralDock.newGraph)
 
- #            self.settingsButton = PicButton('Settings.png',checkable = True,size = 70)
+ #            self.settingsButton = PicButton('Settings.png',checkable = True,size = 70,
+ #                               path = self.globalSession.settings.path)
  #            self.settingsButton.setToolTip('Show a window to change the settings \
  # of the data acquisition.')
  #            self.settingsButton.clicked.connect(self.showSettings)
 
             self.statusIndicator = StatusIndicator(self.globalSession)
 
-        self.consoleButton = PicButton('console.png',checkable = True,size = 70)
-        self.consoleButton.setToolTip('Show an embedded python console that has \
+        self.consoleButton = PicButton('console.png',checkable = True,size = 70,
+                                path = self.globalSession.settings.path)
+        self.consoleButton.setToolTip('Show or hide an embedded python console that has \
  access to all of the data in the program.')
         self.consoleButton.clicked.connect(self.showConsole)
 
-        self.logBookButton = PicButton('logbook.png',checkable = True,size = 70)
-        self.logBookButton.setToolTip('Display the logbook.')
+        self.logBookButton = PicButton('logbook.png',checkable = True,size = 70,
+                                path = self.globalSession.settings.path)
+        self.logBookButton.setToolTip('Display or hide the logbook.')
         self.logBookButton.clicked.connect(self.showLogbook)
 
         if self.settings.clearMode:
-            self.analyseButton = PicButton('analyse.png',checkable = True,size = 70)
-            self.analyseButton.setToolTip('Show an analysis that can be used \
+            self.analyseButton = PicButton('analyse.png',checkable = True,size = 70,
+                                    path = self.globalSession.settings.path)
+            self.analyseButton.setToolTip('Show or hide an analysis that can be used \
  to analyse all of the data linked to the current logbook.')
             self.analyseButton.clicked.connect(self.showAnalysis)
 
@@ -275,7 +283,6 @@ process terminated non-gracefully. \n\n Error message: \n' + error
             self.centralDock.dataStreamsDock.setVisible(False)
             self.centralDock.dataStreamsDock.stopTimer()
 
-
     def createDockArea(self):
         """
         Creates main Dock Area
@@ -296,8 +303,7 @@ process terminated non-gracefully. \n\n Error message: \n' + error
         """
         When user clicks help -> documentation
         """
-        import os
-        path = os.getcwd().split('Code')[0] + 'doc\\report.pdf'
+        path = self.settings.path + 'doc\\report.pdf'
         os.startfile(path)
 
     def closeEvent(self,event):
