@@ -20,7 +20,11 @@ from PyDAQmx.DAQmxFunctions import *
 from multiprocessing import Queue
 
 import numpy as np
-from OpenOPC import * 
+try:
+    from OpenOPC import * 
+except IOError:
+    from OpenOPC import * 
+    
 import time
 import ctypes
 import sys
@@ -29,7 +33,7 @@ import sys
 
 def acquire(settings,dataQueue,controlEvent,captureRunningEvent,recordingEvent,errorQueue,
     dataStreamQueue,messageQueue,currentVolt,currentSamples,currentFreq,
-    currentThick,currentThin,currentPower,currentLW):
+    currentThick,currentThin,currentPower,currentLW,iscool):
 
     settings.sanitise() # don't want things to go wrong here
 
@@ -122,10 +126,10 @@ def acquire(settings,dataQueue,controlEvent,captureRunningEvent,recordingEvent,e
                 currentSamples.value = currentSamples.value + 1
                 
                 dataQueue.put((counts, aiData,currentVolt.value,currentFreq.value, timestamp,
-                        currentThick.value,currentThin.value,currentPower.value,currentLW.value))
+                        currentThick.value,currentThin.value,currentPower.value,currentLW.value,iscool.value))
                 
             dataStreamQueue.put((counts, aiData,currentVolt.value,currentFreq.value, timestamp,
-                    currentThick.value,currentThin.value,currentPower.value,currentLW.value))
+                    currentThick.value,currentThin.value,currentPower.value,currentLW.value,iscool.value))
 
         except Exception as err:
             errorQueue.put(str(err))
@@ -136,7 +140,7 @@ def acquire(settings,dataQueue,controlEvent,captureRunningEvent,recordingEvent,e
 def acquireCW(settings, freqQueue,controlEvent,captureRunningEvent,recordingEvent,
     newFreqEvent,errorQueue,messageQueue,currentVolt,
     currentFreq,currentThick,currentThin,currentPower,
-    currentLW,currentCycle,pPerCycle,pForHRS,pPulse):
+    currentLW,currentCycle,pPerCycle,pForHRS,pPulse,iscool):
 
     settings.sanitise() # don't want things to go wrong here
 
@@ -164,14 +168,15 @@ def acquireCW(settings, freqQueue,controlEvent,captureRunningEvent,recordingEven
     controlEvent.set()
 
     while True:
-        try:
+        # try:
             if newFreqEvent.is_set():
                 newFreqEvent.clear()
                 scanVariables = freqQueue.get()
 
                 variable = scanVariables[0]
 
-                currentVolt.value = scanVariables[1][variable]
+                if variable == 'volt':
+                    currentVolt.value = scanVariables[1][variable]
 
                 time.sleep(0.01)
 
@@ -186,18 +191,19 @@ def acquireCW(settings, freqQueue,controlEvent,captureRunningEvent,recordingEven
                 pForHRS.value = variables[3][1]
                 pPerCycle.value = variables[4][1]
                 pPulse.value = variables[5][1]
+                iscool.value = opc.read('ISCOOL readout Agilent.ISCOOL voltage')[0]
 
                 time.sleep(0.003)
 
-        except Exception as err:
-            errorQueue.put(str(err))
-            break
+        # except Exception as err:
+        #     errorQueue.put(str(err))
+            # break
 
 
 def acquireRILIS(settings, freqQueue,controlEvent,captureRunningEvent,recordingEvent,
     newFreqEvent,errorQueue,messageQueue,currentVolt,
     currentFreq,currentThick,currentThin,currentPower,
-    currentLW,currentCycle,pPerCycle,pForHRS,pPulse):
+    currentLW,currentCycle,pPerCycle,pForHRS,pPulse,iscool):
 
     settings.sanitise() # don't want things to go wrong here
 
@@ -268,11 +274,12 @@ def acquireRILIS(settings, freqQueue,controlEvent,captureRunningEvent,recordingE
                 currentThick.value = variables[1][1]
                 currentThin.value = variables[2][1]
                 currentPower.value = variables[3][1]
-                currentLW.value = variables[4][1]
+                currentLW.value = variables[4][1]*1000
                 currentCycle.value = variables[5][1]
                 pForHRS.value = variables[6][1]
                 pPerCycle.value = variables[7][1]
                 pPulse.value = variables[8][1]
+                iscool.value = opc.read('ISCOOL readout Agilent.ISCOOL voltage')[0]
 
 
                 time.sleep(0.001)

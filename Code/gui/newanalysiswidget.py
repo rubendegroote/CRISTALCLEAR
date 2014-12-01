@@ -119,7 +119,7 @@ class NewAnalysisWidget(QtGui.QTabWidget):
         m = np.min([np.min(d) for d in metaCap.x])
         M = np.max([np.max(d) for d in metaCap.x])
 
-        x = np.linspace(m,M,1500)
+        x = np.linspace(m,M,10000)
 
         for s in metaCap.getSpectra():
             curve = pg.PlotCurveItem(x,s(x))

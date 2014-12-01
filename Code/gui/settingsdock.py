@@ -15,6 +15,7 @@ class SettingsDock(Dock):
         self.autoOrient = False
 
         self.settingsWidget = SettingsWidget(globalSession)
+        print globalSession.settings.laser
 
         self.addWidget(self.settingsWidget)
 
@@ -36,7 +37,12 @@ class SettingsWidget(QtGui.QWidget):
         self.layout.addWidget(QtGui.QLabel('Device:'), 0,0)
 
         self.deviceCombo = QtGui.QComboBox()
-        self.deviceCombo.addItems(['None', 'NI 6221'])
+        options = ['None', 'NI 6221']
+        self.deviceCombo.addItems(options)
+        if self.settings.debugMode:
+            self.deviceCombo.setCurrentIndex(0)
+        else:
+            self.deviceCombo.setCurrentIndex(1)
         self.deviceCombo.currentIndexChanged.connect(self.selectDevice)
         self.layout.addWidget(self.deviceCombo, 0,1)
 
@@ -87,8 +93,10 @@ class SettingsWidget(QtGui.QWidget):
         self.layout.addWidget(self.label11, 6,0)
 
         self.laserCombo = QtGui.QComboBox(self)
-        self.laserCombo.addItems(['CW', 'RILIS', 'CW without wavemeter'])
-        self.laserCombo.setCurrentIndex(2)
+        options = ['CW Laser Voltage Scan', 'RILIS', 
+        'CW Laser Voltage Scan Without Wavemeter','Matisse Manual Scan']
+        self.laserCombo.addItems(options)
+        self.laserCombo.setCurrentIndex(options.index(self.settings.laser))
         self.layout.addWidget(self.laserCombo, 6,1)        
 
         self.setTextFields()
@@ -136,7 +144,7 @@ class SettingsWidget(QtGui.QWidget):
         if not message[0]:
             success = False
 
-        if not self.settings.laser == 'CW without wavemeter':
+        if not self.settings.laser == 'CW Laser Voltage Scan Without Wavemeter'                                                                                         :
             message = self.globalSession.scanner.messageQueue.get()
             if not message[0]:
                 success = False

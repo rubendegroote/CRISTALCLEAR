@@ -12,7 +12,7 @@ class MetaCapture():
 
         self.xkey = ''
         self.ykey = ''
-        self.freqMode = False
+        self.freqMode = 'Frequency'
         self.mode = 'Combined'
         self.scansIncluded = []
         self.histMode = True
@@ -74,10 +74,11 @@ class MetaCapture():
             self.y = self.getDataPerScan(self.ykey,self.y2key)
             self.errors = np.array([np.sqrt(suby) for suby in self.y])
 
-        if self.xkey == 'freq' and self.freqMode:
-            self.x = self.x * 3 * 10**10
-        elif self.xkey == 'freq':
-            self.x = 1.0/self.x/100
+        if self.xkey == 'freq':
+            if self.freqMode == 'Frequency':
+                self.x = self.x * 3 * 10**10
+            elif self.freqMode == 'Wavelength':
+                self.x = 1.0/self.x/100
 
         if self.xkey == 'lw':
             self.x = self.x * 1000

@@ -86,7 +86,7 @@ class MainWindow(QtGui.QMainWindow):
 
         text = 'An error occured on one of the DAQ process loops. \
 You can find the error message below. It would be \
-best to close and restart CRISTAL, since the fautly\
+best to close and restart CRISTAL, since the faulty \
 process terminated non-gracefully. \n\n Error message: \n' + error
 
         reply = QtGui.QMessageBox.question(self, 'DAQ Error',text)
@@ -131,11 +131,11 @@ process terminated non-gracefully. \n\n Error message: \n' + error
  data is it is collected.')
             self.plotButton.clicked.connect(self.centralDock.newGraph)
 
- #            self.settingsButton = PicButton('Settings.png',checkable = True,size = 70,
- #                               path = self.globalSession.settings.path)
- #            self.settingsButton.setToolTip('Show a window to change the settings \
- # of the data acquisition.')
- #            self.settingsButton.clicked.connect(self.showSettings)
+            self.settingsButton = PicButton('Settings.png',checkable = True,size = 70,
+                               path = self.globalSession.settings.path)
+            self.settingsButton.setToolTip('Show a window to change the settings \
+ of the data acquisition.')
+            self.settingsButton.clicked.connect(self.showSettings)
 
             self.statusIndicator = StatusIndicator(self.globalSession)
 
@@ -160,8 +160,8 @@ process terminated non-gracefully. \n\n Error message: \n' + error
         self.toolbar = QtGui.QToolBar('CRISTAL')
         self.toolbar.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
 
-        # if self.settings.cristalMode:
-        #     self.toolbar.addWidget(self.settingsButton)
+        if self.settings.cristalMode:
+            self.toolbar.addWidget(self.settingsButton)
 
         self.toolbar.addWidget(self.consoleButton)
         self.toolbar.addWidget(self.logBookButton)
@@ -272,11 +272,11 @@ process terminated non-gracefully. \n\n Error message: \n' + error
         else:
             self.centralDock.toDoDock.setVisible(False)
 
-    # def showSettings(self):
-    #     if not self.centralDock.settingsDock.isVisible():
-    #         self.centralDock.settingsDock.setVisible(True)
-    #     else:
-    #         self.centralDock.settingsDock.setVisible(False)
+    def showSettings(self):
+        if not self.centralDock.settingsDock.isVisible():
+            self.centralDock.settingsDock.setVisible(True)
+        else:
+            self.centralDock.settingsDock.setVisible(False)
 
     def showDataStream(self):
         if not self.centralDock.dataStreamsDock.isVisible():

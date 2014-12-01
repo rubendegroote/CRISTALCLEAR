@@ -36,7 +36,8 @@ labelDict = {'ion': 'ion rate',
              'power': 'Power of laser',
              'lw': 'Linewidth of laser',
              'thick': 'Thick etalon setpoint',
-             'thin': 'Thin etalon setpoint'}
+             'thin': 'Thin etalon setpoint',
+             'iscool':'ISCOOL voltage'}
 
 unitsDict = {'ion': 'Hz',
          'time': 's',
@@ -47,8 +48,9 @@ unitsDict = {'ion': 'Hz',
          'volt': 'V',
          'power': 'W',
          'lw': 'Hz',
-         'thick': None,
-         'thin': None}
+         'thick': '',
+         'thin': '',
+         'iscool':'V'}
 
 class GraphDock(Dock):
 
@@ -163,7 +165,7 @@ class MyGraph(QtGui.QWidget):
         self.freqUnitSelector = QtGui.QComboBox(parent = None)
         self.freqUnitSelector.setToolTip('Choose the units you want to\
  display the frequency in.')
-        self.freqUnitSelector.addItems(['Frequency','Wavelength'])
+        self.freqUnitSelector.addItems(['Frequency','Wavelength','Wavenumber'])
         self.freqUnitSelector.currentIndexChanged.connect(self.updatePlot)
         self.sublayout.addWidget(self.freqUnitSelector,0,5)
 
@@ -189,7 +191,7 @@ class MyGraph(QtGui.QWidget):
         self.sublayout.addWidget(self.graphBox,2,2)
 
         self.binLabel = QtGui.QLabel(self, text="Bin size: ")
-        self.binSpinBox = pg.SpinBox(value = 0.03,
+        self.binSpinBox = pg.SpinBox(value = 1000,
             bounds = (0,None), dec = False)
         self.binSpinBox.setToolTip('Choose the bin size\
  used to bin the data.')
@@ -346,23 +348,24 @@ class MyGraph(QtGui.QWidget):
         else:
             self.y2 = None
 
-        freqMode = str(self.freqUnitSelector.currentText()) == 'Frequency'
+        freqMode = str(self.freqUnitSelector.currentText())
         mode = str(self.meanBox.currentText())
         scansIncluded = self.settingsWidget.getCheckStates()
         histMode = str(self.graphBox.currentText()) == 'Step (histogram)'
         
         if self.x == 'freq':
-            if freqMode:
+            if freqMode == 'Frequency':
                 binsize = self.binSpinBox.value()*10**6
-            else:
+                self.binLabel.setText("Bin size (MHz): ")
+            elif  freqMode == 'Wavelength':
                 binsize = self.binSpinBox.value()*10**(-15)
+                self.binLabel.setText("Bin size (fm): ")
+            else:
+                binsize = self.binSpinBox.value()
+                self.binLabel.setText("Bin size (cm^-1): ")
 
             self.freqUnitSelector.setVisible(True)
 
-            if str(self.freqUnitSelector.currentText()) == 'Frequency':
-                self.binLabel.setText("Bin size (MHz): ")
-            else:
-                self.binLabel.setText("Bin size (fm): ")
         else:
             binsize = self.binSpinBox.value()
             self.freqUnitSelector.setVisible(False)
@@ -402,8 +405,10 @@ class MyGraph(QtGui.QWidget):
             if self.x == 'freq':
                 if str(self.freqUnitSelector.currentText()) == 'Wavelength':
                     xunit = 'm'
-                else:
+                elif str(self.freqUnitSelector.currentText()) == 'Frequency':
                     xunit = 'Hz'
+                else:
+                    xunit = 'cm^-1'
             else:
                 xunit = unitsDict[self.x]
 
@@ -414,8 +419,10 @@ class MyGraph(QtGui.QWidget):
                 if self.y == 'freq':
                     if str(self.freqUnitSelector.currentText()) == 'Wavelength':
                         yunit = 'm'
-                    else:
+                    elif str(self.freqUnitSelector.currentText()) == 'Frequency':
                         yunit = 'Hz'
+                    else:
+                        yunit = 'cm^-1'
                 else:
                     yunit = unitsDict[self.y]
 

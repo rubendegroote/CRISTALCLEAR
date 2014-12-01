@@ -33,26 +33,28 @@ labelDict = {'ion': 'Ion Counts',
              'ai0': 'Voltage photodiode 1',
              'ai1': 'Voltage photodiode 2',
              'ai2': 'Voltage photodiode 3',
-             'freq': 'Wavemeter frequency',
+             'freq': 'Wavemeter wavenumber',
              'volt': 'Scanning voltage',
              'rate': 'Rate averaged over 10 samples',
              'Power': 'Laser Power',
              'Linewidth': 'Laser Linewidth',
              'thick': 'Thick etalon setpoint',
-             'thin': 'Thin etalon setpoint'}
+             'thin': 'Thin etalon setpoint',
+             'iscool': 'ISCOOL voltage'}
 
 unitsDict = {'ion': 'Hz',
              'time': 's',
              'ai0': 'V',
              'ai1': 'V',
              'ai2': 'V',
-             'freq': 'Hz',
+             'freq': 'cm^-1',
              'volt': 'V',
              'rate': 'Hz',
-             'Power': 'mW',
+             'Power': 'W',
              'Linewidth': 'Hz',
              'thick': '',
-             'thin': ''}
+             'thin': '',
+             'iscool': 'V'}
 
 class DataStreamsDock(Dock):
 

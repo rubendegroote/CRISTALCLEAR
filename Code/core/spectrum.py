@@ -278,7 +278,7 @@ Defaulting to Gaussian lineshape."""
         self.results = lm.minimize(Model, self.par)
         self.results = lm.minimize(Model, self.par)
 
-        self.plotFit(x,y,yerr)
+        # self.plotFit(x,y,yerr)
 
         self.unscaleParameters()
 

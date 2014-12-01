@@ -172,15 +172,11 @@ class ScannerWidget(QtGui.QWidget):
         self.freeScanWidget.setEnabled(True)
 
     def disable(self):
-
         if self.scanner.freeScan:
             self.autoScanWidget.setDisabled(True)
         else:
             self.freeScanWidget.setDisabled(True)
             self.rampButton.setDisabled(True)
-            self.timeEdit.setDisabled(True)
-            self.modeCombo.setDisabled(True)
-            self.timeEdit.setDisabled(True)
 
             for point in self.points:
                 point.setDisabled(True)
@@ -188,6 +184,9 @@ class ScannerWidget(QtGui.QWidget):
                 step.setDisabled(True)
             for marker in self.markerContainer.markers:
                 marker.setDisabled(True)
+
+        self.timeEdit.setDisabled(True)
+        self.modeCombo.setDisabled(True)
 
     def makeFreqArray(self):
         variable = 'wavelength' #placeholder
@@ -424,13 +423,13 @@ class FreeScanWidget(QtGui.QWidget):
         self.updateTimer.timeout.connect(self.updateReadback)
         self.updateTimer.start(30)
 
-        self.laser = 'CW'
+        self.laser = 'CW Laser Voltage Scan'
 
     def updateReadback(self):
         
         if not self.laser == self.scanner.settings.laser:
-            if self.scanner.settings.laser == 'CW':
-                self.laser = 'CW'
+            if self.scanner.settings.laser == 'CW Laser Voltage Scan':
+                self.laser = 'CW Laser Voltage Scan'
                 self.setButtonWL.setText('Set Voltage')
                 self.freqLabel.setText('Voltage setpoint')
 
@@ -438,9 +437,13 @@ class FreeScanWidget(QtGui.QWidget):
                 self.laser = 'RILIS'
                 self.setButtonWL.setText('Set Wavelength')
                 self.freqLabel.setText('Wavelength setpoint')
-            
+
+            elif self.scanner.settings.laser == 'Matisse Manual Scan':
+                self.setButtonWL.setText('Wavelength changed in Matisse Commander')
+                self.laser = 'Matisse Manual Scan'
+
             else:
-                self.laser = 'CW without wavemeter'
+                self.laser = 'CW Laser Voltage Scan Without Wavemeter'
 
         if self.laser == 'RILIS':
             self.thinReadBack.setText(str(self.globalSession.dataStreams['thin'].getLatestValue()))
@@ -455,15 +458,24 @@ class FreeScanWidget(QtGui.QWidget):
             self.thickReadBack.setVisible(False)
             self.thickLabel.setVisible(False)
 
-        if not self.laser == 'CW without wavemeter':
-            self.waveReadBackLabel.setVisible(True)
-            self.waveLengthReadBack.setVisible(True)
-            self.waveLengthReadBack.setText(str(self.globalSession.dataStreams['freq'].getLatestValue()))
-        else:
+        if self.laser == 'CW Laser Voltage Scan Without Wavemeter':
             self.waveReadBackLabel.setVisible(False)
             self.waveLengthReadBack.setVisible(False)
+            self.waveLengthSpinBox.setVisible(True)
+            self.freqLabel.setVisible(True)
+        elif self.laser == 'Matisse Manual Scan':
+            self.waveLengthSpinBox.setVisible(False)
+            self.freqLabel.setVisible(False)
+            self.waveLengthSpinBox.setValue(0)
+        else:
+            self.waveReadBackLabel.setVisible(True)
+            self.waveLengthReadBack.setVisible(True)
+            self.waveLengthSpinBox.setVisible(True)
+            self.freqLabel.setVisible(True)
+            self.waveLengthReadBack.setText(str(self.globalSession.dataStreams['freq'].getLatestValue()))
 
-        if self.scanner.captureRunningEvent.is_set():
+        if self.scanner.recordingEvent.is_set():
+            self.waveLengthSpinBox.setVisible(True)
             self.setDisabled(True)
         else:
             self.setEnabled(True)
@@ -478,10 +490,15 @@ class FreeScanWidget(QtGui.QWidget):
         if sender == 'spinbox' and self.scanner.captureRunningEvent.is_set():
             return
 
+        if variable == 'wavelength' and 'CW Laser Voltage Scan' in self.laser:
+            variable = 'volt'
+
         scanVariables = {'wavelength':self.waveLengthSpinBox.value(),
                     'volt':self.waveLengthSpinBox.value(), #}
                     'thin':0 ,#self.thinSpinBox.value(),
                     'thick':0 }#self.thickSpinBox.value()}
+
+        print variable
 
         self.scanner.setCurrentValue(variable, scanVariables)
 

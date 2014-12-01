@@ -41,7 +41,7 @@ class DataManager():
         # array that holds the data for each scan
         # Each entry in this array is a dictionary with data in it
 
-        self.dataTypes = ['time','volt','freq','ion','thick','thin','power','lw']
+        self.dataTypes = ['time','volt','freq','ion','thick','thin','power','lw','iscool']
         for i in xrange(self.settings.aiChannel.count(',')+1):
             self.dataTypes.append('ai'+str(i))
 
@@ -73,7 +73,7 @@ class DataManager():
             self.scanner.newScanEvent.clear()
             
         try:
-            count,ai,volt,freq, t,thick,thin,power,lw  = self.scanner.dataQueue.get_nowait()
+            count,ai,volt,freq, t,thick,thin,power,lw,iscool  = self.scanner.dataQueue.get_nowait()
             self.allData[-1]['time'] = np.append(self.allData[-1]['time'],t)
             self.allData[-1]['ion'] = np.append(self.allData[-1]['ion'],count)
             for nr,val in enumerate(ai):
@@ -85,6 +85,7 @@ class DataManager():
             self.allData[-1]['thin'] = np.append(self.allData[-1]['thin'],thin)
             self.allData[-1]['power'] = np.append(self.allData[-1]['power'],power)
             self.allData[-1]['lw'] = np.append(self.allData[-1]['lw'],lw)
+            self.allData[-1]['iscool'] = np.append(self.allData[-1]['iscool'],lw)
 
             self.currentIndex = self.currentIndex + 1
         except:
@@ -108,14 +109,18 @@ class DataManager():
             self.allData[-1]['time'] = data.T[0]
             self.allData[-1]['volt'] = data.T[1]
             self.allData[-1]['freq'] = data.T[2]
+            self.allData[-1]['ion'] = data.T[3]
 
             #bit clumsy from here on, but it works I guess
             for nr in xrange(aiChannels):
-                self.allData[-1]['ai'+str(nr)] = data.T[3+nr]
+                self.allData[-1]['ai'+str(nr)] = data.T[4+nr]
 
-            self.allData[-1]['ion'] = data.T[3+aiChannels]
-            self.allData[-1]['thick'] = data.T[4+aiChannels]
-            self.allData[-1]['thin'] = data.T[5+aiChannels]
-            self.allData[-1]['power'] = data.T[6+aiChannels]
-            self.allData[-1]['lw'] = data.T[7+aiChannels]
-            
+            self.allData[-1]['thick'] = data.T[5+aiChannels]
+            self.allData[-1]['thin'] = data.T[6+aiChannels]
+            self.allData[-1]['power'] = data.T[7+aiChannels]
+            self.allData[-1]['lw'] = data.T[8+aiChannels]
+
+            try:
+                self.allData[-1]['iscool'] = data.T[9+aiChannels]
+            except IndexError:
+                pass

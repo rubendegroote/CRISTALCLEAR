@@ -40,11 +40,11 @@ class CentralDockArea(da.DockArea):
     def createUIDocks(self):
 
         if self.globalSession.settings.cristalMode:
-            # self.settingsDock = SettingsDock(name='Settings',size = (1,1), globalSession = self.globalSession)
-            # self.settingsWidget = self.settingsDock.settingsWidget
-            # self.settingsWidget.settingsUpdated.connect(self.updateDataStreams)
-            # self.addDock(self.settingsDock, 'right')
-            # self.settingsDock.setVisible(False)
+            self.settingsDock = SettingsDock(name='Settings',size = (1,1), globalSession = self.globalSession)
+            self.settingsWidget = self.settingsDock.settingsWidget
+            self.settingsWidget.settingsUpdated.connect(self.updateDataStreams)
+            self.addDock(self.settingsDock, 'right')
+            self.settingsDock.setVisible(False)
 
             self.dataStreamsDock = DataStreamsDock(name='Data streams',
                 size = (1,1),globalSession=self.globalSession)

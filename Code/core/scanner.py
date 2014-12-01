@@ -86,6 +86,7 @@ class Scanner(QtCore.QObject):
         self.protonsPerCycle = Value('i',0)
         self.protonsForHRS = Value('i',0)
         self.protonPulse = Value('b',False)
+        self.iscool = Value('d',0.0)
 
         self.dataQueue = Queue()
         self.freqQueue = Queue()
@@ -107,11 +108,13 @@ class Scanner(QtCore.QObject):
                                     self.dataStreamQueue,self.messageQueue,
                                     self.currentVolt,self.currentSamples,
                                     self.currentFreq,self.currentThick,
-                                    self.currentThin,self.currentPower,self.currentLW))
+                                    self.currentThin,self.currentPower,self.currentLW,
+                                    self.iscool))
 
-        if self.settings.laser == 'CW without wavemeter':
+        if self.settings.laser == 'CW Laser Voltage Scan Without Wavemeter':
             targetF = laserDummy
-        elif self.settings.laser == 'CW':
+        elif self.settings.laser == 'CW Laser Voltage Scan'\
+                or self.settings.laser == 'Matisse Manual Scan':
             targetF = acquireCW
         elif self.settings.laser == 'RILIS':
             targetF = acquireRILIS
@@ -122,7 +125,8 @@ class Scanner(QtCore.QObject):
                             self.errorQueue,self.messageQueue,self.currentVolt,
                             self.currentFreq,self.currentThick,self.currentThin,
                             self.currentPower,self.currentLW,self.currentCycle,
-                            self.protonsPerCycle,self.protonsForHRS,self.protonPulse))
+                            self.protonsPerCycle,self.protonsForHRS,self.protonPulse,
+                            self.iscool))
              
 
         self.daqProcess.start()
@@ -132,7 +136,7 @@ class Scanner(QtCore.QObject):
         self.scanThread = threading.Timer(0, self.scan).start()
 
 
-        if not self.settings.laser == 'CW without wavemeter':
+        if not self.settings.laser == 'CW Laser Voltage Scan Without Wavemeter'                                                                                         :
             relayPath = self.settings.path + '\\Code\\builds\\CRISValueRelay\\CRISValueRelay4\\CrisValueRelay'
 
             self.relayProcess = subprocess.Popen(relayPath)
@@ -147,7 +151,7 @@ class Scanner(QtCore.QObject):
         try:
             self.daqProcess.terminate()
             self.RILISProcess.terminate()
-            if not self.settings.laser == 'CW without wavemeter':
+            if not self.settings.laser == 'CW Laser Voltage Scan Without Wavemeter'                                                                                         :
                 self.relayProcess.terminate()
 
         except:

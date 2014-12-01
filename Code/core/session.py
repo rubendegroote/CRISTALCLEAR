@@ -112,9 +112,9 @@ class GlobalSession:
         self.dataStreams = dict()
         self.dataStreams['time'] = StreamedData('time',10000,self)
         
-        if self.settings.laser == 'cw':
+        if self.settings.laser == 'CW Laser Voltage Scan':
             self.dataStreams['volt'] = StreamedData('volt',10000,self)
-        if not self.settings.laser == 'CW without wavemeter':
+        if not self.settings.laser == 'CW Laser Voltage Scan Without Wavemeter'                                                                                         :
             self.dataStreams['freq'] = StreamedData('freq',10000,self)
         self.dataStreams['ion'] = StreamedData('ion',10000,self)
         self.dataStreams['rate'] = StreamedData('rate',10000,self)
@@ -126,10 +126,11 @@ class GlobalSession:
             self.dataStreams['thick'] = StreamedData('thick',10000,self)
             self.dataStreams['thin'] = StreamedData('thin',10000,self)
 
-        if not self.settings.laser == 'CW without wavemeter':
+        if not self.settings.laser == 'CW Laser Voltage Scan Without Wavemeter'                                                                                         :
             self.dataStreams['Power'] = StreamedData('Power',10000,self)
             self.dataStreams['Linewidth'] = StreamedData('Linewidth',10000,self)
 
+        self.dataStreams['iscool'] = StreamedData('iscool',10000,self)
 
     def dataStream(self):
 
@@ -138,13 +139,13 @@ class GlobalSession:
             toAdd[key] = []
 
         while not self.scanner.dataStreamQueue.empty():
-            count,ai,volt,freq,t,thick,thin,power,lw = self.scanner.dataStreamQueue.get()
+            count,ai,volt,freq,t,thick,thin,power,lw,iscool = self.scanner.dataStreamQueue.get()
 
             toAdd['time'].append(t)
-            if self.settings.laser == 'cw':
+            if self.settings.laser == 'CW Laser Voltage Scan':
                 toAdd['volt'].append(volt)
 
-            if not self.settings.laser == 'CW without wavemeter':
+            if not self.settings.laser == 'CW Laser Voltage Scan Without Wavemeter'                                                                                         :
                 toAdd['freq'].append(freq)
             toAdd['ion'].append(count)
 
@@ -155,10 +156,11 @@ class GlobalSession:
                 toAdd['thick'].append(thick)
                 toAdd['thin'].append(thin)
 
-            if not self.settings.laser == 'CW without wavemeter':
+            if not self.settings.laser == 'CW Laser Voltage Scan Without Wavemeter'                                                                                         :
                 toAdd['Power'].append(power)
                 toAdd['Linewidth'].append(lw)
 
+            toAdd['iscool'].append(iscool)
 
         for key, val in toAdd.iteritems():
 
@@ -167,9 +169,9 @@ class GlobalSession:
 
             if key == 'ion':
                 try:
-                    summed = np.sum(self.dataStreams[key].data[-10:]) 
+                    averaged = np.mean(self.dataStreams[key].data[-10:]) 
                 except:
-                    summed = 0
+                    averaged = 0
             elif key =='time':
                 try:
                     elapsed = self.dataStreams[key].data[-1] - self.dataStreams[key].data[-10]
@@ -177,7 +179,7 @@ class GlobalSession:
                     elapsed = 1
 
         for i,time in enumerate(toAdd['time']):
-            self.dataStreams['rate'].addData([time],[summed / elapsed])
+            self.dataStreams['rate'].addData([time],[averaged / elapsed])
 
         if not self.stopProgram:
             self.dataStreamThread = threading.Timer(0.03, self.dataStream).start()

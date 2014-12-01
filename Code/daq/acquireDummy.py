@@ -8,7 +8,7 @@ import numpy as np
 
 def acquireDummy(settings,dataQueue,controlEvent,captureRunningEvent,recordingEvent,errorQueue,
     dataStreamQueue,messageQueue,currentVolt,currentSamples,currentFreq,
-    currentThick,currentThin,currentPower,currentLW):
+    currentThick,currentThin,currentPower,currentLW,iscool):
 
     settings.sanitise() # don't want things to go wrong here
 
@@ -33,10 +33,10 @@ def acquireDummy(settings,dataQueue,controlEvent,captureRunningEvent,recordingEv
                 currentSamples.value = currentSamples.value + 1
                 
                 dataQueue.put((counts, ais,currentVolt.value,currentFreq.value, timestamp,
-                        currentThick.value,currentThin.value,currentPower.value,currentLW.value))
+                        currentThick.value,currentThin.value,currentPower.value,currentLW.value,iscool.value))
                 
             dataStreamQueue.put((counts, ais,currentVolt.value,currentFreq.value, timestamp,
-                    currentThick.value,currentThin.value,currentPower.value,currentLW.value))
+                    currentThick.value,currentThin.value,currentPower.value,currentLW.value,iscool.value))
 
         except Exception as err:
             errorQueue.put(str(err))

@@ -27,7 +27,7 @@ class SessionSettings(dict):
         self.noOfAi = self.aiChannel.count(',') + 1
         self.clockChannel = "/Dev1/PFI1"
         self.timePerStep = 1
-        self.laser = 'CW'
+        self.laser = 'CW Laser Voltage Scan'
 
         self.cristalMode = True
         self.clearMode = True
@@ -46,7 +46,7 @@ class SessionSettings(dict):
         self.noOfAi = self.aiChannel.count(',') + 1
         self.clockChannel = "/Dev1/PFI1"
         self.timePerStep = 1
-        self.laser = 'CW'
+        self.laser = 'CW Laser Voltage Scan'
 
         self.zigZag = False
 

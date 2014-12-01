@@ -13,8 +13,6 @@ from statusindicator import StatusIndicator
 from scannerwidget import ScannerWidget
 from picbutton import PicButton
 
-
-
 class Launcher(QtGui.QWidget):
     """
 
@@ -116,9 +114,10 @@ class Launcher(QtGui.QWidget):
 
         self.laserCombo = QtGui.QComboBox(self)
         self.laserCombo.setToolTip('Use this to select the laser system ypu want to\
- control. The option without wavemeter does not require a working labview\
+ control. The option Without Wavemeter does not require a working labview\
  installation, the others do.')
-        self.laserCombo.addItems(['CW', 'RILIS', 'CW without wavemeter'])
+        self.laserCombo.addItems(['CW Laser Voltage Scan', 'RILIS', 
+            'CW Laser Voltage Scan Without Wavemeter', 'Matisse Manual Scan'])
         self.laserCombo.setCurrentIndex(2)
         settingsLayout.addWidget(self.laserCombo, 6,1)        
 
@@ -173,7 +172,6 @@ class Launcher(QtGui.QWidget):
             self.AIEdit.setDisabled(True)
             self.label10.setDisabled(True)
             self.clockEdit.setDisabled(True)
-            self.laserCombo.setCurrentIndex(2)
 
         else:
             self.label6.setEnabled(True)
@@ -242,7 +240,7 @@ class Launcher(QtGui.QWidget):
 
         self.disableAll()
         
-        if self.settings.laser == 'CW without wavemeter':
+        if self.settings.laser == 'CW Laser Voltage Scan Without Wavemeter'                                                                                         :
             totalProc = 3
         else:
             totalProc = 4
